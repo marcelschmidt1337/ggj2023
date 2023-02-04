@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -12,5 +9,11 @@ public class MainMenuController : MonoBehaviour
     public void OnStartGameButtonClicked()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+    
+    [UsedImplicitly]
+    public void OnCreditsButtonClicked()
+    {
+        SceneManager.LoadScene("Credits");
     }
 }
