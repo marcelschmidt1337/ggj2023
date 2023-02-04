@@ -38,7 +38,7 @@ public class PlayerAnimationController : MonoBehaviour
     private void OnPlayerOrientationChanged(int dir)
     {
         var scale = transform.localScale;
-        scale = new Vector3(scale.x * dir, scale.y, scale.z);
+        scale = new Vector3(Mathf.Abs(scale.x) * dir, scale.y, scale.z);
         transform.localScale = scale;
     }
 
