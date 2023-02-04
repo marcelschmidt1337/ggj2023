@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         pickupAction.started += OnStartPickup;
+        pickupAction.canceled += OnCancelPickup;
         pickupAction.performed += OnPickupPerformed;
         throwAction.performed += OnThrow;
     }
@@ -40,6 +40,14 @@ public class PlayerController : MonoBehaviour
         if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
         {
             playerState.CurrentAction = PlayerAction.PickingUp;
+        }
+    }
+
+    private void OnCancelPickup(InputAction.CallbackContext obj)
+    {
+        if (playerState.CurrentAction == PlayerAction.PickingUp)
+        {
+            playerState.CurrentAction = PlayerAction.None;
         }
     }
 
