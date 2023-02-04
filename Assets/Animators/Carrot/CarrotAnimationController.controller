@@ -81,7 +81,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walking
+  m_Name: Base
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 4652557713419680740}
@@ -91,7 +91,7 @@ AnimatorStateMachine:
     m_Position: {x: 140, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3688919823466304996}
-    m_Position: {x: 250, y: 210, z: 0}
+    m_Position: {x: 250, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5291633522445012156}
     m_Position: {x: 390, y: 90, z: 0}
@@ -116,7 +116,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grounded
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -145,7 +145,7 @@ AnimatorController:
   m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Walking
+    m_Name: Base
     m_StateMachine: {fileID: -3713320763847053320}
     m_Mask: {fileID: 0}
     m_Motions: []
