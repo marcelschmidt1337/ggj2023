@@ -38,4 +38,12 @@ public class PlayerController : MonoBehaviour
         var moveAmount = moveAction.ReadValue<Vector2>();
         rigidbody.velocity += moveAmount * (Time.fixedDeltaTime * speedMultiplier);
     }
+
+    private void OnPickup(InputAction.CallbackContext obj)
+    {
+    }
+
+    private void OnThrow(InputAction.CallbackContext obj)
+    {
+    }
 }
