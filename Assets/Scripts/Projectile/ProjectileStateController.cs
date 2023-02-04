@@ -25,10 +25,13 @@ public class ProjectileStateController : MonoBehaviour
     private AProjectileStateController selectedStateController;
     private ProjectileState projectileState;
 
+    private SoundManager soundManager;
+
     public void Start()
     {
         Debug.Log("start");
         ActivateGround();
+        soundManager = GameObject.FindWithTag("Sound")?.GetComponent<SoundManager>();
     }
 
     public void FireProjectile(float strength, int direction)
@@ -46,6 +49,11 @@ public class ProjectileStateController : MonoBehaviour
 
     private void ActivateState(ProjectileState newState)
     {
+        if (projectileState == ProjectileState.Fired && newState == ProjectileState.Grounded)
+        {
+            soundManager.PlaySfx(SoundManager.Sfx.Landing);
+        }
+
         projectileState = newState;
         OnStateChanged?.Invoke(projectileState);
         switch (projectileState)
@@ -59,18 +67,20 @@ public class ProjectileStateController : MonoBehaviour
                 selectedStateController = ProjectileFiredStateController;
                 break;
         }
-        selectedStateController.Init(this.transform, this.projectileAnimator, this.collider2D);
 
+        selectedStateController.Init(this.transform, this.projectileAnimator, this.collider2D);
     }
 
     public void Update()
     {
         selectedStateController?.Update();
     }
+
     public void OnDrawGizmos()
     {
         selectedStateController?.OnDrawGizmos();
     }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         selectedStateController?.OnTriggerEnter2D(other);
