@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
                     //Pair carrot to player
                     var target = pickupTargetSensor.CurrentPickupTarget.transform;
                     target.SetParent(transform);
+                    target.gameObject.SetActive(false);
                     target.localPosition = new Vector2(0, 0.5f);
                     Debug.Log($"Picking up: {target}");
                     playerState.ObjectCarrying = target;
@@ -134,6 +135,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
 
                     playerState.ObjectCarrying.SetParent(null);
+                    playerState.ObjectCarrying.gameObject.SetActive(true);
 
                     var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
                     var direction = playerState.PlayerOrientation;

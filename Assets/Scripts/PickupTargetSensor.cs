@@ -36,7 +36,7 @@ public class PickupTargetSensor : MonoBehaviour
 
     private void UpdateCurrentInteractable()
     {
-        CurrentPickupTarget = targetsInRange.Count > 0 ? targetsInRange[^1] : null;
+        CurrentPickupTarget = targetsInRange.Count > 0 ? targetsInRange[0] : null;
    
         Debug.Log($"Current pickup target: {CurrentPickupTarget}");
     }
