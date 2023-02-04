@@ -8,7 +8,7 @@ public class PickupTargetSensor : MonoBehaviour
     
     public Collider2D CurrentPickupTarget { get; private set; }
     
-    public List<Collider2D> targetsInRange = new();
+    private readonly List<Collider2D> targetsInRange = new();
 
     protected void OnValidate()
     {
