@@ -21,6 +21,11 @@
 
 # Visual Studio cache directory
 .vs/
+/.vscode
+/omnisharp.json
+
+#richi shit :) 
+Nuget/Microsoft.Unity.Analyzers.dll
 
 # Gradle cache directory
 .gradle/
@@ -59,3 +64,4 @@ sysinfo.txt
 crashlytics-build.properties
 
 UserSettings
+
