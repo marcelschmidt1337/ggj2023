@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1612666963757044638
 Transform:
   m_ObjectHideFlags: 0
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 5890044463602198259}
   - {fileID: 3427561051443834739}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1612666963757044639
 Rigidbody2D:
@@ -147,6 +147,8 @@ MonoBehaviour:
   pickupTargetSensor: {fileID: 5890044463602198257}
   rigidbody: {fileID: 1612666963757044639}
   speedMultiplier: 5
+  maxThrowDistance: 10
+  durationToReachMaxDistance: 2
 --- !u!114 &1612666963757044706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,83 +161,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2dcfcfed3ac24967994d941729f2a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1612666963622759589
-PrefabInstance:
+--- !u!1 &5890044463602198258
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1612666963757044638}
-    m_Modifications:
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178290975058815575, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-      propertyPath: m_Name
-      value: PickupTargetSensor
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5802a9a1260ac4587967b51507333420, type: 3}
---- !u!114 &5890044463602198257 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5178290975058815572, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-  m_PrefabInstance: {fileID: 1612666963622759589}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5890044463602198259}
+  - component: {fileID: 5890044463602198257}
+  - component: {fileID: 5890044463602198256}
+  m_Layer: 8
+  m_Name: PickupTargetSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5890044463602198259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890044463602198258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1612666963757044638}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5890044463602198257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890044463602198258}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b66b77f6bfd3441ad9b7edabcc44ce95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &5890044463602198259 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5178290975058815574, guid: 5802a9a1260ac4587967b51507333420, type: 3}
-  m_PrefabInstance: {fileID: 1612666963622759589}
+  targetsInRange: []
+--- !u!58 &5890044463602198256
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890044463602198258}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!1001 &7725559181786548592
 PrefabInstance:
   m_ObjectHideFlags: 0
