@@ -25,10 +25,25 @@ public class PlayerState : MonoBehaviour
             currentAction = value;
         }
     }
+    public event Action<int> OnOrientationChanged;
+
+    private int playerOrientation = 1;
+
+    public int PlayerOrientation
+    {
+        get => playerOrientation;
+        set
+        {
+            if (playerOrientation != value)
+            {
+                playerOrientation = value;
+                OnOrientationChanged?.Invoke(value);
+            }
+        }
+    }
 
     public bool IsWalking => WalkDirection.magnitude > 0f;
     public Vector2 WalkDirection { get; set; }
-    
     public Transform ObjectCarrying { get; set; }
     
     public bool CanWalk => CurrentAction != PlayerAction.Stunned && CurrentAction != PlayerAction.PickingUp && CurrentAction != PlayerAction.Throwing;

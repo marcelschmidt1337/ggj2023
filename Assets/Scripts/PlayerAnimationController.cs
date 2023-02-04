@@ -23,13 +23,23 @@ public class PlayerAnimationController : MonoBehaviour
     private void OnEnable()
     {
         playerState.OnActionChanged += OnPlayerActionChanged;
+        playerState.OnOrientationChanged += OnPlayerOrientationChanged;
 
         OnPlayerActionChanged(playerState.CurrentAction);
+        OnPlayerOrientationChanged(playerState.PlayerOrientation);
     }
-    
+
     private void OnDisable()
     {
         playerState.OnActionChanged -= OnPlayerActionChanged;
+        playerState.OnOrientationChanged -= OnPlayerOrientationChanged;
+    }
+
+    private void OnPlayerOrientationChanged(int dir)
+    {
+        var scale = transform.localScale;
+        scale = new Vector3(scale.x * dir, scale.y, scale.z);
+        transform.localScale = scale;
     }
 
     private void LateUpdate()

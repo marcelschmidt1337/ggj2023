@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody.velocity += moveDir * (Time.fixedDeltaTime * speedMultiplier);
             playerState.WalkDirection = moveDir;
+            
+            if (Mathf.Abs(moveDir.x) > 0)
+            {
+                playerState.PlayerOrientation = (int)Mathf.Sign(moveDir.x);
+            }
         }
         else
         {
@@ -131,7 +136,7 @@ public class PlayerController : MonoBehaviour
                     playerState.ObjectCarrying.SetParent(null);
 
                     var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
-                    var direction = (int)Mathf.Sign(transform.forward.x);
+                    var direction = playerState.PlayerOrientation;
                     projectile.FireProjectile(currentThrowCharge * maxThrowDistance, direction);
 
                     playerState.ObjectCarrying = null;
