@@ -131,9 +131,9 @@ public class PlayerController : MonoBehaviour
 
                 playerState.ObjectCarrying.SetParent(null);
 
-                var projectile = playerState.ObjectCarrying.GetComponent<ProjectileFiredStateController>();
+                var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
                 var direction = (int)Mathf.Sign(transform.forward.x);
-                projectile.Fire(currentThrowCharge * maxThrowDistance, direction);
+                projectile.FireProjectile(currentThrowCharge * maxThrowDistance, direction);
 
                 playerState.ObjectCarrying = null;
                 playerState.CurrentAction = PlayerAction.None;

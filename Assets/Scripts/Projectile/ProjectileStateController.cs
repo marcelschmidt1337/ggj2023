@@ -51,11 +51,6 @@ public class ProjectileStateController : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            FireProjectile(10, 1);
-        }
-
         selectedState?.Update();
     }
     public void OnDrawGizmos()
