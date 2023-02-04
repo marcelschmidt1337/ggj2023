@@ -10,6 +10,8 @@ public class GameOverScreen : MonoBehaviour
 
     public void Show(bool hasWon)
     {
+        gameObject.SetActive(true);
+
         animator.SetBool(ShowHash, true);
         animator.SetBool(Won, hasWon);
     }

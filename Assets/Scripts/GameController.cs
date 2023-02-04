@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameOverScreen gameOverScreen;
-    [SerializeField] private int matchDurationSeconds = 10;
+    [SerializeField] private int matchDurationSeconds = 180;
 
     private float matchTimeElapsed;
 
@@ -15,19 +15,22 @@ public class GameController : MonoBehaviour
 
     private IEnumerator StartMatch()
     {
-        Debug.Log($"Time elapsed: {matchTimeElapsed} / {matchDurationSeconds} s");
-        
-        matchTimeElapsed += Time.deltaTime;
-
-        if (matchTimeElapsed > matchDurationSeconds)
+        while (true)
         {
-            //TODO
-            var hasWon = false;
-            gameOverScreen.Show(hasWon);
-            
-            yield break;
-        }
+            // Debug.Log($"Time elapsed: {matchTimeElapsed} / {matchDurationSeconds} s");
+        
+            matchTimeElapsed += Time.deltaTime;
 
-        yield return null;
+            if (matchTimeElapsed > matchDurationSeconds)
+            {
+                //TODO
+                var hasWon = false;
+                gameOverScreen.Show(hasWon);
+            
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 }
