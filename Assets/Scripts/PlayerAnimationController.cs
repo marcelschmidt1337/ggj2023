@@ -20,9 +20,16 @@ public class PlayerAnimationController : MonoBehaviour
         "StunnedAction",
     };
     
-    private void Awake()
+    private void OnEnable()
     {
         playerState.OnActionChanged += OnPlayerActionChanged;
+
+        OnPlayerActionChanged(playerState.CurrentAction);
+    }
+    
+    private void OnDisable()
+    {
+        playerState.OnActionChanged -= OnPlayerActionChanged;
     }
 
     private void LateUpdate()
@@ -32,7 +39,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void UpdateWalking()
     {
-        animator.SetBool(Idle, playerState.IsWalking);
+        animator.SetBool(Idle, !playerState.IsWalking);
         animator.SetBool(Up, playerState.WalkDirection.y > 0);
         animator.SetBool(Down, playerState.WalkDirection.y < 0);
         animator.SetBool(Left, playerState.WalkDirection.x > 0);
@@ -41,9 +48,11 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void OnPlayerActionChanged(PlayerAction action)
     {
+        var currentActionStr = $"{action.ToString()}Action";
         foreach (var actionStr in Actions)
         {
-            animator.SetBool(actionStr,$"{action}+Action" == actionStr);
+            animator.SetBool(actionStr,currentActionStr.Equals(actionStr));
+            Debug.Log($"Updating Action to current: {currentActionStr}, selected: {actionStr}, are equal: {currentActionStr.Equals(actionStr)}");
         }
     }
 }
