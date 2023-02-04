@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 9dc87f65aaf744e11a2ed7d598f29f0c, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -195,11 +195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: {fileID: 1612666963757044706}
+  playerInput: {fileID: 1524156939793907972}
   pickupTargetSensor: {fileID: 5890044463602198257}
   rigidbody: {fileID: 1612666963757044639}
   speedMultiplier: 5
-  maxThrowDistance: 10
-  durationToReachMaxDistance: 2
 --- !u!114 &1612666963757044706
 MonoBehaviour:
   m_ObjectHideFlags: 0
