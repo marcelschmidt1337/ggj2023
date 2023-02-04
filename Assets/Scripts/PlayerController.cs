@@ -15,9 +15,8 @@ public class PlayerController : MonoBehaviour
     {
         if (playerState.CanWalk)
         {
-            var velocity = rigidbody.velocity + moveDir * (Time.fixedDeltaTime * speedMultiplier);
-            rigidbody.velocity = velocity;
-            playerState.IsWalking = velocity.magnitude > 0;
+            rigidbody.velocity += moveDir * (Time.fixedDeltaTime * speedMultiplier);
+            playerState.IsWalking = moveDir.magnitude > 0;
         }
         else
         {
