@@ -66,40 +66,39 @@ public class PlayerController : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-            {
-                if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
                 {
-                    playerState.CurrentAction = PlayerAction.PickingUp;
-                }
+                    if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
+                    {
+                        playerState.CurrentAction = PlayerAction.PickingUp;
+                    }
 
-                break;
-            }
+                    break;
+                }
             case InputActionPhase.Canceled:
-            {
-                if (playerState.CurrentAction == PlayerAction.PickingUp)
                 {
-                    playerState.CurrentAction = PlayerAction.None;
+                    if (playerState.CurrentAction == PlayerAction.PickingUp)
+                    {
+                        playerState.CurrentAction = PlayerAction.None;
+                    }
+                    break;
                 }
-
-                break;
-            }
             case InputActionPhase.Performed:
-            {
-                if (!playerState.CanPickUp || !pickupTargetSensor.HasPickupTarget)
                 {
-                    return;
+                    if (!playerState.CanPickUp || !pickupTargetSensor.HasPickupTarget)
+                    {
+                        return;
+                    }
+
+                    playerState.CurrentAction = PlayerAction.Carrying;
+
+                    //Pair carrot to player
+                    var target = pickupTargetSensor.CurrentPickupTarget.transform;
+                    target.SetParent(transform);
+                    target.localPosition = new Vector2(0, 0.5f);
+                    Debug.Log($"Picking up: {target}");
+                    playerState.ObjectCarrying = target;
+                    break;
                 }
-
-                playerState.CurrentAction = PlayerAction.Carrying;
-
-                //Pair carrot to player
-                var target = pickupTargetSensor.CurrentPickupTarget.transform;
-                target.SetParent(transform);
-                target.localPosition = new Vector2(0, 0.5f);
-                Debug.Log($"Picking up: {target}");
-                playerState.ObjectCarrying = target;
-                break;
-            }
         }
     }
 
@@ -108,37 +107,37 @@ public class PlayerController : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-            {
-                if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
-
-                Debug.Log($"Start throwing: {playerState.ObjectCarrying}");
-
-                playerState.CurrentAction = PlayerAction.Throwing;
-
-                chargeThrowRoutine = StartCoroutine(ChargeThrow());
-                break;
-            }
-            case InputActionPhase.Performed:
-            {
-                if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;
-
-                if (chargeThrowRoutine != null)
                 {
-                    StopCoroutine(chargeThrowRoutine);
+                    if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
+
+                    Debug.Log($"Start throwing: {playerState.ObjectCarrying}");
+
+                    playerState.CurrentAction = PlayerAction.Throwing;
+
+                    chargeThrowRoutine = StartCoroutine(ChargeThrow());
+                    break;
                 }
+            case InputActionPhase.Performed:
+                {
+                    if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;
 
-                Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
+                    if (chargeThrowRoutine != null)
+                    {
+                        StopCoroutine(chargeThrowRoutine);
+                    }
 
-                playerState.ObjectCarrying.SetParent(null);
+                    Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
 
-                var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
-                var direction = (int)Mathf.Sign(transform.forward.x);
-                projectile.FireProjectile(currentThrowCharge * maxThrowDistance, direction);
+                    playerState.ObjectCarrying.SetParent(null);
 
-                playerState.ObjectCarrying = null;
-                playerState.CurrentAction = PlayerAction.None;
-                break;
-            }
+                    var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
+                    var direction = (int)Mathf.Sign(transform.forward.x);
+                    projectile.FireProjectile(currentThrowCharge * maxThrowDistance, direction);
+
+                    playerState.ObjectCarrying = null;
+                    playerState.CurrentAction = PlayerAction.None;
+                    break;
+                }
         }
     }
 

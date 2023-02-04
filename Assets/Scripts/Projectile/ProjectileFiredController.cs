@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ProjectileFiredStateController : AProjectileState
+public class ProjectileFiredStateController : AProjectileStateController
 {
-
     public event Action OnLandedAction;
 
     [Range(0.1f, 5)] public float TimeOfTravel;
-    [SerializeField] private Transform transform;
+    protected override ProjectileState AnimationState { get; set; } = ProjectileState.Fired;
+
 
     private double travelFinishTime;
     private (float initial, float final) travelSegment;
@@ -38,6 +38,9 @@ public class ProjectileFiredStateController : AProjectileState
         travelFinishTime = Time.time + TimeOfTravel;
         travelSegment = (transform.position.x, transform.position.x + direction * travelDistance);
 
+    }
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
     }
     private float ComputeLapsedTimePercent()
     {

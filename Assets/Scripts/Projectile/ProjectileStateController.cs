@@ -1,34 +1,49 @@
+using System.Collections.Generic;
 using System;
+using System.Linq;
 using UnityEngine;
 public enum ProjectileState
 {
     Grounded,
     Idle,
-    Fired
+    Fired,
+    Broken
 }
+
 
 public class ProjectileStateController : MonoBehaviour
 {
     [HideInInspector] public event Action<ProjectileState> OnStateChanged;
+
+    [SerializeField] private Rigidbody2D rigigBody;
+    [SerializeField] private CircleCollider2D collider2D;
+    [SerializeField] private Animator projectileAnimator;
+
     [SerializeField] private ProjectileFiredStateController ProjectileFiredStateController;
     [SerializeField] private ProjectileGroundedStateController ProjectileGroundedStateController;
 
-    [SerializeField] private Rigidbody2D rigigBody;
-    [SerializeField] private Collider2D collider;
-
-    private AProjectileState selectedState;
+    private AProjectileStateController selectedStateController;
     private ProjectileState projectileState;
 
     public void Start()
     {
-        ActivateState(ProjectileState.Idle);
+        Debug.Log("start");
+        ActivateGround();
     }
+
     public void FireProjectile(float strength, int direction)
     {
         ActivateState(ProjectileState.Fired);
         ProjectileFiredStateController.Fire(strength, direction);
-        ProjectileFiredStateController.OnLandedAction += () => ActivateState(ProjectileState.Grounded);
+        ProjectileFiredStateController.OnLandedAction -= ActivateGround;
+        ProjectileFiredStateController.OnLandedAction += ActivateGround;
     }
+
+    private void ActivateGround()
+    {
+        ActivateState(ProjectileState.Grounded);
+    }
+
     private void ActivateState(ProjectileState newState)
     {
         projectileState = newState;
@@ -37,25 +52,37 @@ public class ProjectileStateController : MonoBehaviour
         {
             case ProjectileState.Grounded:
                 Debug.Log("Grounded!");
-                selectedState = ProjectileGroundedStateController;
-                break;
-            case ProjectileState.Idle:
-                Debug.Log("Idle!");
+                selectedStateController = ProjectileGroundedStateController;
                 break;
             case ProjectileState.Fired:
                 Debug.Log("Fire!");
-                selectedState = ProjectileFiredStateController;
+                selectedStateController = ProjectileFiredStateController;
                 break;
         }
+        selectedStateController.Init(this.transform, this.projectileAnimator, this.collider2D);
+
     }
 
     public void Update()
     {
-        selectedState?.Update();
+        selectedStateController?.Update();
     }
     public void OnDrawGizmos()
     {
-        selectedState?.OnDrawGizmos();
+        selectedStateController?.OnDrawGizmos();
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        selectedStateController?.OnTriggerEnter2D(other);
     }
 
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        selectedStateController?.OnTriggerStay2D(other);
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        selectedStateController?.OnTriggerExit2D(other);
+    }
 }
