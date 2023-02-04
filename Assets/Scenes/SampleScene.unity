@@ -987,6 +987,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1612666963757044636, guid: 30e5f31927b8b4fd09a964402ecb3a7c, type: 3}
+      propertyPath: throwAction.m_Interactions
+      value: Press(behavior=1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612666963757044636, guid: 30e5f31927b8b4fd09a964402ecb3a7c, type: 3}
       propertyPath: throwAction.m_SingletonActionBindings.Array.size
       value: 1
       objectReference: {fileID: 0}

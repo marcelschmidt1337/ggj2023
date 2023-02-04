@@ -31,9 +31,23 @@ public class PlayerController : MonoBehaviour
     {
         pickupAction.started += OnStartPickup;
         pickupAction.canceled += OnCancelPickup;
-        pickupAction.performed += OnPickupPerformed;
-        throwAction.performed += OnThrow;
+        pickupAction.performed += OnPerformedPickup;
+
+        throwAction.started += OnStartThrow;
+        throwAction.performed += OnPerformedThrow;
     }
+    
+    private void Update()
+    {
+        if (playerState.CanWalk)
+        {
+            var moveAmount = moveAction.ReadValue<Vector2>();
+            rigidbody.velocity += moveAmount * (Time.fixedDeltaTime * speedMultiplier);
+            playerState.IsWalking = true;
+        }
+    }
+
+    #region Pickup
 
     private void OnStartPickup(InputAction.CallbackContext obj)
     {
@@ -51,11 +65,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnPickupPerformed(InputAction.CallbackContext obj)
+    private void OnPerformedPickup(InputAction.CallbackContext obj)
     {
-        if (!pickupTargetSensor.HasPickupTarget)
+        if (!playerState.CanPickUp || !pickupTargetSensor.HasPickupTarget)
         {
-            Debug.LogWarning("Pickup performed but, no target in range");
             return;
         }
 
@@ -69,21 +82,25 @@ public class PlayerController : MonoBehaviour
         playerState.ObjectCarrying = target;
     }
 
-    private void Update()
-    {
-        if (playerState.CanWalk)
-        {
-            var moveAmount = moveAction.ReadValue<Vector2>();
-            rigidbody.velocity += moveAmount * (Time.fixedDeltaTime * speedMultiplier);
-            playerState.IsWalking = true;
-        }
-    }
+    #endregion
 
-    private void OnThrow(InputAction.CallbackContext obj)
+    private void OnStartThrow(InputAction.CallbackContext obj)
     {
         if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
 
-        //Drop carrot for now
+        Debug.Log($"Start throwing up: {playerState.ObjectCarrying}");
+        
+        playerState.CurrentAction = PlayerAction.Throwing;
+    }
+
+
+    private void OnPerformedThrow(InputAction.CallbackContext obj)
+    {
+        if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;     
+
+        Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
+        
+        //Should execute throw, but drop carrot for now
         playerState.ObjectCarrying.SetParent(null);
         playerState.ObjectCarrying = null;
         playerState.CurrentAction = PlayerAction.None;
