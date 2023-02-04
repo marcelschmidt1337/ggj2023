@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public event Action OnPickedUp;
+    public PickupTargetSensor pickupTargetSensor;
     public PlayerState playerState;
 
     [SerializeField] private InputAction moveAction;
@@ -37,13 +37,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnStartPickup(InputAction.CallbackContext obj)
     {
-        // TODO: Check if in range of carrot! && playerState.CanPickup
-        playerState.CurrentAction = PlayerAction.PickingUp;
+        if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
+        {
+            playerState.CurrentAction = PlayerAction.PickingUp;
+        }
     }
 
     private void OnPickupPerformed(InputAction.CallbackContext obj)
     {
+        if (!pickupTargetSensor.HasPickupTarget)
+        {
+            Debug.LogWarning("Pickup performed but, no target in range");
+            return;
+        }
+
         playerState.CurrentAction = PlayerAction.Carrying;
+
+        //Pair carrot to player
+        var target = pickupTargetSensor.CurrentPickupTarget.transform;
+        target.SetParent(transform);
+        Debug.Log($"Picking up: {target}");
     }
 
     private void Update()

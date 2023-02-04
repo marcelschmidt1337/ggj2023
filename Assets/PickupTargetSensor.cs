@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class PickupTargetSensor : MonoBehaviour
 {
+    public bool HasPickupTarget => CurrentPickupTarget != null;
+    
     public Collider2D CurrentPickupTarget { get; private set; }
     
     public List<Collider2D> targetsInRange = new();
