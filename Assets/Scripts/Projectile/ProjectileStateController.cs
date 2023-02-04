@@ -27,7 +27,6 @@ public class ProjectileStateController : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("start");
         ActivateGround();
     }
 
@@ -51,11 +50,9 @@ public class ProjectileStateController : MonoBehaviour
         switch (projectileState)
         {
             case ProjectileState.Grounded:
-                Debug.Log("Grounded!");
                 selectedStateController = ProjectileGroundedStateController;
                 break;
             case ProjectileState.Fired:
-                Debug.Log("Fire!");
                 selectedStateController = ProjectileFiredStateController;
                 break;
         }

@@ -7,6 +7,8 @@ public class ProjectileGroundedStateController : AProjectileStateController
 
     protected override ProjectileState AnimationState { get; set; } = ProjectileState.Grounded;
 
+    [SerializeField] AnimationCurve ProximitySpeedCurve;
+
     public override void Update()
     {
 
@@ -16,9 +18,8 @@ public class ProjectileGroundedStateController : AProjectileStateController
     }
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interaction"))
         {
-            Debug.Log("enter " + other.gameObject.layer);
             SpeedUpAnimation(other);
         }
 
@@ -26,30 +27,28 @@ public class ProjectileGroundedStateController : AProjectileStateController
 
     public override void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interaction"))
         {
-            Debug.Log("stay " + other.gameObject.layer);
             SpeedUpAnimation(other);
-
-
         }
 
     }
 
     public override void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Interaction"))
         {
+            this.animationController.speed = 1;
         }
 
     }
 
     private void SpeedUpAnimation(Collider2D other)
     {
-        float maxLength =  ((Vector2)other.bounds.size).magnitude/2.0f +  this.collider.radius;
+        float maxLength = ((CircleCollider2D)other).radius + this.collider.radius;
         float distancePercent = (other.transform.position - this.transform.position).magnitude / maxLength;
-        Debug.Log(distancePercent);
-        distancePercent = (1 - distancePercent) * 2;
-        this.animationController.speed = 1;
+        this.animationController.speed = 1 + ProximitySpeedCurve.Evaluate(1 - distancePercent);
     }
+
+
 }
