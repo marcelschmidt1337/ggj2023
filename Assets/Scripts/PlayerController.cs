@@ -1,108 +1,159 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public PickupTargetSensor pickupTargetSensor;
-    public PlayerState playerState;
-
-    [SerializeField] private InputAction moveAction;
-    [SerializeField] private InputAction pickupAction;
-    [SerializeField] private InputAction throwAction;
+    [SerializeField] private PlayerState playerState;
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PickupTargetSensor pickupTargetSensor;
     [SerializeField] private new Rigidbody2D rigidbody;
     [SerializeField] private float speedMultiplier = 1f;
+    [SerializeField] private float maxThrowDistance = 10f;
+    [SerializeField] private float durationToReachMaxDistance = 2f;
 
+    private Vector2 moveDir = Vector2.zero;
+    private float currentThrowCharge;
+    private Coroutine chargeThrowRoutine;
 
     private void OnEnable()
     {
-        moveAction.Enable();
-        pickupAction.Enable();
-        throwAction.Enable();
+        playerInput.onActionTriggered += EventHandler;
     }
 
     private void OnDisable()
     {
-        moveAction.Disable();
-        pickupAction.Disable();
-        throwAction.Disable();
+        playerInput.onActionTriggered -= EventHandler;
     }
 
-    private void Awake()
+    private void EventHandler(InputAction.CallbackContext context)
     {
-        pickupAction.started += OnStartPickup;
-        pickupAction.canceled += OnCancelPickup;
-        pickupAction.performed += OnPerformedPickup;
-
-        throwAction.started += OnStartThrow;
-        throwAction.performed += OnPerformedThrow;
+        switch (context.action.name)
+        {
+            case "move":
+                OnMove(context);
+                break;
+            case "pickup":
+                OnPickup(context);
+                break;
+            case "throw":
+                OnThrow(context);
+                break;
+        }
     }
-    
+
     private void Update()
     {
         if (playerState.CanWalk)
         {
-            var moveAmount = moveAction.ReadValue<Vector2>();
-            rigidbody.velocity += moveAmount * (Time.fixedDeltaTime * speedMultiplier);
-            playerState.IsWalking = true;
+            rigidbody.velocity += moveDir * (Time.fixedDeltaTime * speedMultiplier);
+            playerState.IsWalking = moveDir.magnitude > 0;
         }
-    }
-
-    #region Pickup
-
-    private void OnStartPickup(InputAction.CallbackContext obj)
-    {
-        if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
+        else
         {
-            playerState.CurrentAction = PlayerAction.PickingUp;
+            rigidbody.velocity = Vector2.zero;
+            playerState.IsWalking = false;
         }
     }
 
-    private void OnCancelPickup(InputAction.CallbackContext obj)
+    private void OnMove(InputAction.CallbackContext context)
     {
-        if (playerState.CurrentAction == PlayerAction.PickingUp)
+        moveDir = context.ReadValue<Vector2>();
+    }
+
+    private void OnPickup(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
         {
-            playerState.CurrentAction = PlayerAction.None;
+            case InputActionPhase.Started:
+            {
+                if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
+                {
+                    playerState.CurrentAction = PlayerAction.PickingUp;
+                }
+
+                break;
+            }
+            case InputActionPhase.Canceled:
+            {
+                if (playerState.CurrentAction == PlayerAction.PickingUp)
+                {
+                    playerState.CurrentAction = PlayerAction.None;
+                }
+
+                break;
+            }
+            case InputActionPhase.Performed:
+            {
+                if (!playerState.CanPickUp || !pickupTargetSensor.HasPickupTarget)
+                {
+                    return;
+                }
+
+                playerState.CurrentAction = PlayerAction.Carrying;
+
+                //Pair carrot to player
+                var target = pickupTargetSensor.CurrentPickupTarget.transform;
+                target.SetParent(transform);
+                target.localPosition = new Vector2(0, 0.5f);
+                Debug.Log($"Picking up: {target}");
+                playerState.ObjectCarrying = target;
+                break;
+            }
         }
     }
 
-    private void OnPerformedPickup(InputAction.CallbackContext obj)
+    private void OnThrow(InputAction.CallbackContext context)
     {
-        if (!playerState.CanPickUp || !pickupTargetSensor.HasPickupTarget)
+        switch (context.phase)
         {
-            return;
+            case InputActionPhase.Started:
+            {
+                if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
+
+                Debug.Log($"Start throwing: {playerState.ObjectCarrying}");
+
+                playerState.CurrentAction = PlayerAction.Throwing;
+
+                chargeThrowRoutine = StartCoroutine(ChargeThrow());
+                break;
+            }
+            case InputActionPhase.Performed:
+            {
+                if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;
+
+                if (chargeThrowRoutine != null)
+                {
+                    StopCoroutine(chargeThrowRoutine);
+                }
+
+                Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
+
+                playerState.ObjectCarrying.SetParent(null);
+
+                var projectile = playerState.ObjectCarrying.GetComponent<ProjectileFiredStateController>();
+                var direction = (int)Mathf.Sign(transform.forward.x);
+                projectile.Fire(currentThrowCharge * maxThrowDistance, direction);
+
+                playerState.ObjectCarrying = null;
+                playerState.CurrentAction = PlayerAction.None;
+                break;
+            }
         }
-
-        playerState.CurrentAction = PlayerAction.Carrying;
-        
-        //Pair carrot to player
-        var target = pickupTargetSensor.CurrentPickupTarget.transform;
-        target.SetParent(transform);
-        target.localPosition = new Vector2(0, 0.5f);
-        Debug.Log($"Picking up: {target}");
-        playerState.ObjectCarrying = target;
     }
 
-    #endregion
-
-    private void OnStartThrow(InputAction.CallbackContext obj)
+    private IEnumerator ChargeThrow()
     {
-        if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
+        var totalChargeDuration = 0f;
+        currentThrowCharge = 0f;
 
-        Debug.Log($"Start throwing up: {playerState.ObjectCarrying}");
-        
-        playerState.CurrentAction = PlayerAction.Throwing;
-    }
+        while (true)
+        {
+            yield return null;
 
-
-    private void OnPerformedThrow(InputAction.CallbackContext obj)
-    {
-        if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;     
-
-        Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
-        
-        //Should execute throw, but drop carrot for now
-        playerState.ObjectCarrying.SetParent(null);
-        playerState.ObjectCarrying = null;
-        playerState.CurrentAction = PlayerAction.None;
+            totalChargeDuration += Time.deltaTime;
+            currentThrowCharge = Mathf.PingPong(totalChargeDuration, durationToReachMaxDistance);
+            Debug.Log($"Current Throw Charge: {currentThrowCharge}");
+        }
     }
 }
