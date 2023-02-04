@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public event Action OnPickedUp;
+    public PlayerState playerState;
 
     [SerializeField] private InputAction moveAction;
     [SerializeField] private InputAction pickupAction;
@@ -29,18 +30,30 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        pickupAction.performed += OnPickup;
+        pickupAction.started += OnStartPickup;
+        pickupAction.performed += OnPickupPerformed;
         throwAction.performed += OnThrow;
+    }
+
+    private void OnStartPickup(InputAction.CallbackContext obj)
+    {
+        // TODO: Check if in range of carrot! && playerState.CanPickup
+        playerState.CurrentAction = PlayerAction.PickingUp;
+    }
+
+    private void OnPickupPerformed(InputAction.CallbackContext obj)
+    {
+        playerState.CurrentAction = PlayerAction.Carrying;
     }
 
     private void Update()
     {
-        var moveAmount = moveAction.ReadValue<Vector2>();
-        rigidbody.velocity += moveAmount * (Time.fixedDeltaTime * speedMultiplier);
-    }
-
-    private void OnPickup(InputAction.CallbackContext obj)
-    {
+        if (playerState.CanWalk)
+        {
+            var moveAmount = moveAction.ReadValue<Vector2>();
+            rigidbody.velocity += moveAmount * (Time.fixedDeltaTime * speedMultiplier);
+            playerState.IsWalking = true;
+        }
     }
 
     private void OnThrow(InputAction.CallbackContext obj)
