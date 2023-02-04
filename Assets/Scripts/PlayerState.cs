@@ -14,7 +14,8 @@ public class PlayerState : MonoBehaviour
 {
     public event Action<PlayerAction> OnActionChanged;
 
-    PlayerAction currentAction;
+    private PlayerAction currentAction = PlayerAction.None;
+
     public PlayerAction CurrentAction
     {
         get => currentAction;
