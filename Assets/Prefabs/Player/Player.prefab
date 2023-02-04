@@ -338,6 +338,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSprite
       objectReference: {fileID: 0}
+    - target: {fileID: 3637900692130642505, guid: 72d542d94699b46648101b898d58ba30, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2137659756, guid: ceaa9d713e637494fbf790d17c9e0b51, type: 3}
+    - target: {fileID: 3637900692130642505, guid: 72d542d94699b46648101b898d58ba30, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637900692130642505, guid: 72d542d94699b46648101b898d58ba30, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4947089537133389315, guid: 72d542d94699b46648101b898d58ba30, type: 3}
       propertyPath: m_RootOrder
       value: -1
