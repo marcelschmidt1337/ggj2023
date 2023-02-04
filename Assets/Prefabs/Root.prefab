@@ -234,7 +234,7 @@ MonoBehaviour:
   collider2D: {fileID: 6449220817063908756}
   projectileAnimator: {fileID: 3182111187793540182}
   ProjectileFiredStateController:
-    TimeOfTravel: 0.51
+    TimeOfTravel: 0.7
     ScaleComponent:
       serializedVersion: 2
       m_Curve:
@@ -248,14 +248,23 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.34549522
       - serializedVersion: 3
-        time: 0.3502289
-        value: 1.0424519
-        inSlope: -0.0045887823
-        outSlope: -0.0045887823
+        time: 0.19844319
+        value: 1.1576964
+        inSlope: 1.9143308
+        outSlope: 1.9143308
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.7500038
+        value: 0.051689487
+        inSlope: 2.0219538
+        outSlope: 2.0219538
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.64052045
+        outWeight: 0.21501341
       - serializedVersion: 3
         time: 1
         value: 0
@@ -268,6 +277,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    extraScale: 5
   ProjectileGroundedStateController:
     ProximitySpeedCurve:
       serializedVersion: 2

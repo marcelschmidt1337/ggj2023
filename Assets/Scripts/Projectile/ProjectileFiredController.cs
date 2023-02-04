@@ -9,6 +9,7 @@ public class ProjectileFiredStateController : AProjectileStateController
     [Range(0.1f, 5)] public float TimeOfTravel;
     protected override ProjectileState AnimationState { get; set; } = ProjectileState.Fired;
     [SerializeField] private AnimationCurve ScaleComponent;
+    [SerializeField] private float extraScale;
 
 
     private double travelFinishTime;
@@ -18,7 +19,7 @@ public class ProjectileFiredStateController : AProjectileStateController
 
     public override void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(this.transform.position, ComputeLapsedTimePercent() * Vector3.one);
+        //Gizmos.DrawWireCube(this.transform.position, ComputeLapsedTimePercent() * Vector3.one);
     }
     public override void Init(Transform t, Animator a, CircleCollider2D c)
     {
@@ -34,24 +35,25 @@ public class ProjectileFiredStateController : AProjectileStateController
             if (progress == 0)
             {
                 Stop();
-
-                OnLandedAction?.Invoke();
+                return;
             }
             MoveProjectile();
             Debug.Log(progress);
-            this.transform.localScale = Vector3.Lerp(initialScale, initialScale + Vector3.one, ScaleComponent.Evaluate(1.0f- progress));
-
+            this.transform.localScale = Vector3.Lerp(initialScale, initialScale + Vector3.one * extraScale, ScaleComponent.Evaluate(1.0f - progress));
+            this.animationController.Play(AnimationState.ToString(), 0, progress);
         }
     }
     public void Fire(float travelDistance, int direction)
     {
         velocity = direction * (travelDistance / TimeOfTravel);
         travelFinishTime = Time.time + TimeOfTravel;
+
         travelSegment = (transform.position.x, transform.position.x + direction * travelDistance);
 
     }
     public override void OnTriggerEnter2D(Collider2D other)
     {
+
     }
     private float ComputeLapsedTimePercent()
     {
@@ -60,8 +62,15 @@ public class ProjectileFiredStateController : AProjectileStateController
 
     private void MoveProjectile()
     {
+
         var position = this.transform.position;
-        position.x = Mathf.Clamp(this.transform.position.x + velocity * Time.deltaTime, travelSegment.initial, travelSegment.final);
+        position.x = this.transform.position.x + velocity * Time.deltaTime;
+        position.x = Camera.main.WorldToViewportPoint(position).x % 1.0f;
+        if (Mathf.Sign(position.x) < 1)
+        {
+            position.x = 1.0f + position.x;
+        }
+        position.x = Camera.main.ViewportToWorldPoint(position).x;
         this.transform.position = position;
 
     }
@@ -70,7 +79,8 @@ public class ProjectileFiredStateController : AProjectileStateController
         velocity = 0;
         travelFinishTime = Time.timeAsDouble;
         this.transform.localScale = initialScale;
-
+        Debug.Log("landed");
+        OnLandedAction?.Invoke();
     }
 
 }
