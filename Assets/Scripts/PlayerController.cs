@@ -47,12 +47,12 @@ public class PlayerController : MonoBehaviour
         if (playerState.CanWalk)
         {
             rigidbody.velocity += moveDir * (Time.fixedDeltaTime * speedMultiplier);
-            playerState.IsWalking = moveDir.magnitude > 0;
+            playerState.WalkDirection = moveDir;
         }
         else
         {
             rigidbody.velocity = Vector2.zero;
-            playerState.IsWalking = false;
+            playerState.WalkDirection = Vector2.zero;
         }
     }
 

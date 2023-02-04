@@ -25,7 +25,8 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    public bool IsWalking { get; set; }
+    public bool IsWalking => WalkDirection.magnitude > 0f;
+    public Vector2 WalkDirection { get; set; }
     
     public Transform ObjectCarrying { get; set; }
     
