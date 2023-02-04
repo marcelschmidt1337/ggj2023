@@ -52,11 +52,13 @@ public class PlayerController : MonoBehaviour
         }
 
         playerState.CurrentAction = PlayerAction.Carrying;
-
+        
         //Pair carrot to player
         var target = pickupTargetSensor.CurrentPickupTarget.transform;
         target.SetParent(transform);
+        target.localPosition = new Vector2(0, 0.5f);
         Debug.Log($"Picking up: {target}");
+        playerState.ObjectCarrying = target;
     }
 
     private void Update()
@@ -71,5 +73,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnThrow(InputAction.CallbackContext obj)
     {
+        if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
+
+        //Drop carrot for now
+        playerState.ObjectCarrying.SetParent(null);
+        playerState.ObjectCarrying = null;
+        playerState.CurrentAction = PlayerAction.None;
     }
 }

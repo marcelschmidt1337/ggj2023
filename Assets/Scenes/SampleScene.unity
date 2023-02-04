@@ -986,6 +986,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1612666963757044636, guid: 30e5f31927b8b4fd09a964402ecb3a7c, type: 3}
+      propertyPath: throwAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612666963757044636, guid: 30e5f31927b8b4fd09a964402ecb3a7c, type: 3}
+      propertyPath: throwAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 9eda1172-81d7-4228-8c63-6988b368c550
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612666963757044636, guid: 30e5f31927b8b4fd09a964402ecb3a7c, type: 3}
+      propertyPath: throwAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612666963757044636, guid: 30e5f31927b8b4fd09a964402ecb3a7c, type: 3}
+      propertyPath: throwAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Throw
+      objectReference: {fileID: 0}
     - target: {fileID: 1612666963757044638, guid: 30e5f31927b8b4fd09a964402ecb3a7c, type: 3}
       propertyPath: m_RootOrder
       value: 3
