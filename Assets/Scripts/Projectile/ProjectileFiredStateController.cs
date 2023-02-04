@@ -1,39 +1,37 @@
+using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class ProjectileFiredStateController : MonoBehaviour
+[Serializable]
+public class ProjectileFiredStateController : AProjectileState
 {
 
-    public Rigidbody2D rigigBody;
-    public Collider2D collider;
+    public event Action OnLandedAction;
 
     [Range(0.1f, 5)] public float TimeOfTravel;
+    [SerializeField] private Transform transform;
 
     private double travelFinishTime;
     private (float initial, float final) travelSegment;
     private float velocity = 0;
 
-    public void OnDrawGizmos()
+    public override void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(this.transform.position, ComputeLapsedTimePercent() * Vector3.one);
     }
 
-    public void Update()
+    public override void Update()
     {
         if (velocity != 0)
         {
             float progress = ComputeLapsedTimePercent();
             if (progress == 0)
             {
-                velocity = 0;
-                travelFinishTime = Time.timeAsDouble;
+                Stop();
+                OnLandedAction?.Invoke();
             }
-            var position = this.transform.position;
-            position.x = Mathf.Clamp(this.transform.position.x + velocity * Time.deltaTime, travelSegment.initial, travelSegment.final);
-            this.transform.position = position;
+            MoveProjectile();
         }
     }
-    
     public void Fire(float travelDistance, int direction)
     {
         velocity = direction * (travelDistance / TimeOfTravel);
@@ -44,6 +42,18 @@ public class ProjectileFiredStateController : MonoBehaviour
     private float ComputeLapsedTimePercent()
     {
         return Mathf.Max(0, (float)(travelFinishTime - Time.timeAsDouble) / TimeOfTravel);
+    }
+
+    private void MoveProjectile()
+    {
+        var position = this.transform.position;
+        position.x = Mathf.Clamp(this.transform.position.x + velocity * Time.deltaTime, travelSegment.initial, travelSegment.final);
+        this.transform.position = position;
+    }
+    private void Stop()
+    {
+        velocity = 0;
+        travelFinishTime = Time.timeAsDouble;
     }
 
 }
