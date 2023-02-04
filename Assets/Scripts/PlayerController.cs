@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,9 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PickupTargetSensor pickupTargetSensor;
     [SerializeField] private new Rigidbody2D rigidbody;
     [SerializeField] private float speedMultiplier = 1f;
+    [SerializeField] private float maxThrowDistance = 10f;
+    [SerializeField] private float durationToReachMaxDistance = 2f;
 
     private Vector2 moveDir = Vector2.zero;
-
+    private float currentThrowCharge;
+    private Coroutine chargeThrowRoutine;
 
     private void Update()
     {
@@ -71,20 +75,45 @@ public class PlayerController : MonoBehaviour
     {
         if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
 
-        Debug.Log($"Start throwing up: {playerState.ObjectCarrying}");
+        Debug.Log($"Start throwing: {playerState.ObjectCarrying}");
 
         playerState.CurrentAction = PlayerAction.Throwing;
+
+        chargeThrowRoutine = StartCoroutine(ChargeThrow());
     }
 
+    private IEnumerator ChargeThrow()
+    {
+        var totalChargeDuration = 0f;
+        currentThrowCharge = 0f;
+
+        while (true)
+        {
+            yield return null;
+
+            totalChargeDuration += Time.deltaTime;
+            currentThrowCharge = Mathf.PingPong(totalChargeDuration, durationToReachMaxDistance);
+            Debug.Log($"Current Throw Charge: {currentThrowCharge}");
+        }
+    }
 
     private void OnPerformedThrow(InputAction.CallbackContext obj)
     {
         if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;
 
+        if (chargeThrowRoutine != null)
+        {
+            StopCoroutine(chargeThrowRoutine);
+        }
+
         Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
 
-        //Should execute throw, but drop carrot for now
         playerState.ObjectCarrying.SetParent(null);
+
+        var projectile = playerState.ObjectCarrying.GetComponent<ProjectileFiredStateController>();
+        var direction = (int)Mathf.Sign(transform.forward.x);
+        projectile.Fire(currentThrowCharge * maxThrowDistance, direction);
+        
         playerState.ObjectCarrying = null;
         playerState.CurrentAction = PlayerAction.None;
     }
