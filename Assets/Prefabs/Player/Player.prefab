@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1524156939793907972}
   - component: {fileID: 1612666963757044636}
   - component: {fileID: 1612666963757044706}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 5890044463602198259}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1612666963757044633
 SpriteRenderer:
@@ -198,6 +198,8 @@ MonoBehaviour:
   pickupTargetSensor: {fileID: 5890044463602198257}
   rigidbody: {fileID: 1612666963757044639}
   speedMultiplier: 5
+  maxThrowDistance: 10
+  durationToReachMaxDistance: 2
 --- !u!114 &1612666963757044706
 MonoBehaviour:
   m_ObjectHideFlags: 0
