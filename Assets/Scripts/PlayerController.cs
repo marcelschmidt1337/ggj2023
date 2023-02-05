@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
                     var target = pickupTargetSensor.CurrentPickupTarget.transform;
                     target.SetParent(transform);
                     target.gameObject.SetActive(false);
-                    target.localPosition = new Vector2(0, 0.5f);
+                    target.localPosition = new Vector2(0, 0.2f);
                     Debug.Log($"Picking up: {target}");
                     playerState.ObjectCarrying = target;
                     soundManager.StopSfxLoop(pullingLoop);
