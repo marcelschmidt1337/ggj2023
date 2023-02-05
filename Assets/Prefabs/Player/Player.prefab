@@ -233,8 +233,8 @@ MonoBehaviour:
   rigidbody: {fileID: 1612666963757044639}
   speedMultiplier: 70
   maxThrowDistance: 10
-  durationToReachMaxDistance: 2
-  stunDuration: 1
+  durationToReachMaxDistance: 1.6
+  stunDuration: 2.5
 --- !u!114 &1612666963757044706
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -379,6 +379,10 @@ PrefabInstance:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1879947379}
+    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
+      propertyPath: matchDurationSeconds
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -493,6 +497,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1118987071, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118987071, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118987072, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_Color.a
+      value: 0.7294118
+      objectReference: {fileID: 0}
     - target: {fileID: 1607363535, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -516,6 +532,34 @@ PrefabInstance:
     - target: {fileID: 1607363535, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906927071, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906927071, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906927071, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906927072, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_Color.a
+      value: 0.83137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906927072, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_Color.b
+      value: 0.24705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906927072, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_Color.g
+      value: 0.16910703
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906927072, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_Color.r
+      value: 0.14901961
       objectReference: {fileID: 0}
     - target: {fileID: 4898110192394476538, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_Alpha
@@ -693,7 +737,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.5625
+  orthographic size: 7.177897
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
