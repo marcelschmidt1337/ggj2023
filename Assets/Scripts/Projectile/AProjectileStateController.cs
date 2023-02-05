@@ -18,7 +18,10 @@ public abstract class AProjectileStateController
 
     public abstract void Update();
     public abstract void OnDrawGizmos();
-    public abstract void OnTriggerEnter2D(Collider2D other);
+    public virtual void OnTriggerEnter2D(Collider2D other)
+    {
+
+    }
     public virtual void OnTriggerStay2D(Collider2D other)
     {
 

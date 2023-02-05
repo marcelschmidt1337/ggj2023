@@ -1,3 +1,4 @@
+using System.IO;
 using System;
 using UnityEngine;
 
@@ -8,12 +9,11 @@ public class ProjectileFiredStateController : AProjectileStateController
     public event Action<string> OnBounce;
 
     [Range(0.1f, 5)] public float TimeOfTravel;
+
     protected override ProjectileState AnimationState { get; set; } = ProjectileState.Fired;
     [SerializeField] private AnimationCurve ScaleComponent;
     [SerializeField] private float extraScale;
     [SerializeField] private float collisionActivationThreshold;
-
-
     private double travelFinishTime;
     private Vector2 velocity;
     private Vector3 initialScale;
@@ -55,9 +55,7 @@ public class ProjectileFiredStateController : AProjectileStateController
         velocity = direction * (travelDistance / TimeOfTravel);
         travelFinishTime = Time.time + TimeOfTravel;
     }
-    public override void OnTriggerEnter2D(Collider2D other)
-    {
-    }
+
     public override void OnTriggerStay2D(Collider2D other)
     {
         if (ComputeLapsedTimePercent() >= collisionActivationThreshold)
@@ -65,13 +63,14 @@ public class ProjectileFiredStateController : AProjectileStateController
             if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 other.GetComponent<PlayerController>().StunPlayer();
-                Fire(UnityEngine.Random.Range(2, 4), UnityEngine.Random.insideUnitCircle);
+                Fire(UnityEngine.Random.Range(2, 4), UnityEngine.Random.insideUnitCircle.normalized);
                 OnBounce?.Invoke(LayerMask.LayerToName(other.gameObject.layer));
             }
             else if (other.gameObject.layer == LayerMask.NameToLayer("Water") || other.gameObject.layer == LayerMask.NameToLayer("Root"))
             {
-                Fire(UnityEngine.Random.Range(3, 4), UnityEngine.Random.insideUnitCircle);
+                Fire(UnityEngine.Random.Range(3, 4), UnityEngine.Random.insideUnitCircle.normalized);
                 OnBounce?.Invoke(LayerMask.LayerToName(other.gameObject.layer));
+
             }
         }
     }
@@ -82,25 +81,14 @@ public class ProjectileFiredStateController : AProjectileStateController
 
     private void MoveProjectile()
     {
-
-        var position = this.transform.position;
+        Vector2 position = this.transform.position;
         position = this.transform.position + (Vector3)velocity * Time.deltaTime;
         position = Camera.main.WorldToViewportPoint(position);
-        position.x %= 1.0f;
-        position.y %= 1.0f;
-        if (Mathf.Sign(position.x) < 1)
-        {
-            position.x = 1.0f + position.x;
-        }
-
-        if (Mathf.Sign(position.y) < 1)
-        {
-            position.y = 1.0f + position.y;
-        }
+        position = position.Mod(Vector2.one);
+        position += (Vector2.one - (position.Sign() * 2.0f - Vector2.one));
         position = Camera.main.ViewportToWorldPoint(position);
-        position.z = 0;
-        this.transform.position = position;
 
+        this.transform.position = position;
     }
     private void Stop()
     {
