@@ -33,5 +33,7 @@ https://user-images.githubusercontent.com/9122142/216828419-125a6cb7-12e4-4a99-9
 ## Watch the Trailer
 Check out the official trailer for Root Force to get a feel for the fast-paced, carrot-throwing action. Watch as two players face off , charging and launching their carrots in an attempt to deplete their own field from the ROOT pest. With simple, intuitive controls and endless replayability, Root Force is the perfect game for players of all skill levels.
 
+## Disclaimer
+The code is a beauty to admire through the lense of absrtract art.
 
 Play online: [HERE](https://marcelschmidt1337.github.io/ggj2023/)
