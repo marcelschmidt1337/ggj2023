@@ -10,10 +10,10 @@ public class ProjectileFiredStateController : AProjectileStateController
     protected override ProjectileState AnimationState { get; set; } = ProjectileState.Fired;
     [SerializeField] private AnimationCurve ScaleComponent;
     [SerializeField] private float extraScale;
+    [SerializeField] private float collisionActivationThreshold;
 
 
     private double travelFinishTime;
-    private (float initial, float final) travelSegment;
     private float velocity = 0;
     private Vector3 initialScale;
 
@@ -32,14 +32,14 @@ public class ProjectileFiredStateController : AProjectileStateController
         if (velocity != 0)
         {
             float progress = ComputeLapsedTimePercent();
-            if (progress == 0)
+
+            if (progress == 1)
             {
                 Stop();
                 return;
             }
             MoveProjectile();
-            Debug.Log(progress);
-            this.transform.localScale = Vector3.Lerp(initialScale, initialScale + Vector3.one * extraScale, ScaleComponent.Evaluate(1.0f - progress));
+            this.transform.localScale = Vector3.Lerp(initialScale, initialScale + Vector3.one * extraScale, ScaleComponent.Evaluate(progress));
             this.animationController.Play(AnimationState.ToString(), 0, progress);
         }
     }
@@ -48,16 +48,19 @@ public class ProjectileFiredStateController : AProjectileStateController
         velocity = direction * (travelDistance / TimeOfTravel);
         travelFinishTime = Time.time + TimeOfTravel;
 
-        travelSegment = (transform.position.x, transform.position.x + direction * travelDistance);
 
     }
     public override void OnTriggerEnter2D(Collider2D other)
     {
+        if (ComputeLapsedTimePercent() >= collisionActivationThreshold && other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            other.GetComponent<PlayerController>().StunPlayer();
+        }
 
     }
     private float ComputeLapsedTimePercent()
     {
-        return Mathf.Max(0, (float)(travelFinishTime - Time.timeAsDouble) / TimeOfTravel);
+        return 1.0f - Mathf.Max(0, (float)(travelFinishTime - Time.timeAsDouble) / TimeOfTravel);
     }
 
     private void MoveProjectile()

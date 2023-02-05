@@ -22,7 +22,6 @@ public class ProjectileGroundedStateController : AProjectileStateController
         {
             SpeedUpAnimation(other);
         }
-
     }
 
     public override void OnTriggerStay2D(Collider2D other)
@@ -31,7 +30,6 @@ public class ProjectileGroundedStateController : AProjectileStateController
         {
             SpeedUpAnimation(other);
         }
-
     }
 
     public override void OnTriggerExit2D(Collider2D other)

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedMultiplier = 1f;
     [SerializeField] private float maxThrowDistance = 10f;
     [SerializeField] private float durationToReachMaxDistance = 2f;
+    [SerializeField] private float stunDuration = 1.0f;
 
     private Vector2 moveDir = Vector2.zero;
     private float currentThrowCharge;
@@ -18,6 +19,18 @@ public class PlayerController : MonoBehaviour
     private SoundManager soundManager;
     private AudioSource pullingLoop;
 
+    public void StunPlayer()
+    {
+        StartCoroutine(PlayerStunned());
+    }
+    private IEnumerator PlayerStunned()
+    {
+        var currentAction = playerState.CurrentAction;
+        playerState.CurrentAction = PlayerAction.Stunned;
+        yield return new WaitForSeconds(stunDuration);
+        playerState.CurrentAction = currentAction;
+
+    }
     private void Awake()
     {
         soundManager = GameObject.FindWithTag("Sound")?.GetComponent<SoundManager>();
@@ -78,45 +91,45 @@ public class PlayerController : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-            {
-                if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
                 {
-                    playerState.CurrentAction = PlayerAction.PickingUp;
-                    pullingLoop = soundManager.PlaySfxLoop(SoundManager.Sfx.Pulling);
-                }
+                    if (playerState.CanPickUp && pickupTargetSensor.HasPickupTarget)
+                    {
+                        playerState.CurrentAction = PlayerAction.PickingUp;
+                        pullingLoop = soundManager.PlaySfxLoop(SoundManager.Sfx.Pulling);
+                    }
 
-                break;
-            }
+                    break;
+                }
             case InputActionPhase.Canceled:
-            {
-                if (playerState.CurrentAction == PlayerAction.PickingUp)
                 {
-                    playerState.CurrentAction = PlayerAction.None;
-                    soundManager.StopSfxLoop(pullingLoop);
-                }
+                    if (playerState.CurrentAction == PlayerAction.PickingUp)
+                    {
+                        playerState.CurrentAction = PlayerAction.None;
+                        soundManager.StopSfxLoop(pullingLoop);
+                    }
 
-                break;
-            }
+                    break;
+                }
             case InputActionPhase.Performed:
-            {
-                if (!playerState.CanPickUp || !pickupTargetSensor.HasPickupTarget)
                 {
-                    return;
+                    if (!playerState.CanPickUp || !pickupTargetSensor.HasPickupTarget)
+                    {
+                        return;
+                    }
+
+                    playerState.CurrentAction = PlayerAction.Carrying;
+
+                    //Pair carrot to player
+                    var target = pickupTargetSensor.CurrentPickupTarget.transform;
+                    target.SetParent(transform);
+                    target.gameObject.SetActive(false);
+                    target.localPosition = new Vector2(0, 0.5f);
+                    Debug.Log($"Picking up: {target}");
+                    playerState.ObjectCarrying = target;
+                    soundManager.StopSfxLoop(pullingLoop);
+                    soundManager.PlaySfx(SoundManager.Sfx.Pulled);
+                    break;
                 }
-
-                playerState.CurrentAction = PlayerAction.Carrying;
-
-                //Pair carrot to player
-                var target = pickupTargetSensor.CurrentPickupTarget.transform;
-                target.SetParent(transform);
-                target.gameObject.SetActive(false);
-                target.localPosition = new Vector2(0, 0.5f);
-                Debug.Log($"Picking up: {target}");
-                playerState.ObjectCarrying = target;
-                soundManager.StopSfxLoop(pullingLoop);
-                soundManager.PlaySfx(SoundManager.Sfx.Pulled);
-                break;
-            }
         }
     }
 
@@ -125,39 +138,39 @@ public class PlayerController : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Started:
-            {
-                if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
-
-                Debug.Log($"Start throwing: {playerState.ObjectCarrying}");
-
-                playerState.CurrentAction = PlayerAction.Throwing;
-
-                chargeThrowRoutine = StartCoroutine(ChargeThrow());
-                break;
-            }
-            case InputActionPhase.Performed:
-            {
-                if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;
-
-                if (chargeThrowRoutine != null)
                 {
-                    StopCoroutine(chargeThrowRoutine);
+                    if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
+
+                    Debug.Log($"Start throwing: {playerState.ObjectCarrying}");
+
+                    playerState.CurrentAction = PlayerAction.Throwing;
+
+                    chargeThrowRoutine = StartCoroutine(ChargeThrow());
+                    break;
                 }
+            case InputActionPhase.Performed:
+                {
+                    if (playerState.CurrentAction != PlayerAction.Throwing || playerState.ObjectCarrying == null) return;
 
-                Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
+                    if (chargeThrowRoutine != null)
+                    {
+                        StopCoroutine(chargeThrowRoutine);
+                    }
 
-                playerState.ObjectCarrying.SetParent(null);
-                playerState.ObjectCarrying.gameObject.SetActive(true);
+                    Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
 
-                var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
-                var direction = playerState.PlayerOrientation;
-                projectile.FireProjectile(currentThrowCharge * maxThrowDistance, direction);
+                    playerState.ObjectCarrying.SetParent(null);
+                    playerState.ObjectCarrying.gameObject.SetActive(true);
 
-                playerState.ObjectCarrying = null;
-                playerState.CurrentAction = PlayerAction.None;
-                soundManager.PlaySfx(SoundManager.Sfx.Throw);
-                break;
-            }
+                    var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
+                    var direction = playerState.PlayerOrientation;
+                    projectile.FireProjectile(currentThrowCharge * maxThrowDistance, direction);
+
+                    playerState.ObjectCarrying = null;
+                    playerState.CurrentAction = PlayerAction.None;
+                    soundManager.PlaySfx(SoundManager.Sfx.Throw);
+                    break;
+                }
         }
     }
 

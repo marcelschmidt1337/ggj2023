@@ -63,7 +63,6 @@ public class ProjectileStateController : MonoBehaviour
                 break;
             case ProjectileState.Fired:
                 Debug.Log("fired");
-
                 selectedStateController = ProjectileFiredStateController;
                 break;
         }
