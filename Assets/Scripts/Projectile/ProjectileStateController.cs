@@ -54,10 +54,14 @@ public class ProjectileStateController : MonoBehaviour
         switch (hitLayerName)
         {
             case "Player":
+                soundManager.PlaySfx(SoundManager.Sfx.CarrotBouncePlayer, 8f);
+                break;
             case "Water":
+                soundManager.PlaySfx(SoundManager.Sfx.CarrotBounceWater, 8f);
+                break;
             case "Root":
             default:
-                soundManager.PlaySfx(SoundManager.Sfx.CarrotBounce);
+                soundManager.PlaySfx(SoundManager.Sfx.CarrotBounceCarrot);
                 break;
         }
     }

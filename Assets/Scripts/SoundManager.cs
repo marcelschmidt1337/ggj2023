@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
@@ -11,7 +8,9 @@ public class SoundManager : MonoBehaviour
     public enum Sfx
     {
         PlayerHit,
-        CarrotBounce,
+        CarrotBounceWater,
+        CarrotBounceCarrot,
+        CarrotBouncePlayer,
         Pulling,
         Pulled,
         Landing,
@@ -23,6 +22,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip gameSound;
 
     [Header("SFX")] [SerializeField] private List<AudioClip> carrotHit;
+    [SerializeField] private List<AudioClip> carrotBounceWater;
+    [SerializeField] private List<AudioClip> carrotBounceCarrot;
+    [SerializeField] private List<AudioClip> carrotBouncePlayer;
     [SerializeField] private List<AudioClip> carrotPulling;
     [SerializeField] private List<AudioClip> carrotPulled;
     [SerializeField] private List<AudioClip> carrotLanding;
@@ -35,6 +37,9 @@ public class SoundManager : MonoBehaviour
     {
         sfxMap.Clear();
         sfxMap.Add(Sfx.PlayerHit, carrotHit);
+        sfxMap.Add(Sfx.CarrotBounceWater, carrotBounceWater);
+        sfxMap.Add(Sfx.CarrotBounceCarrot, carrotBounceCarrot);
+        sfxMap.Add(Sfx.CarrotBouncePlayer, carrotBouncePlayer);
         sfxMap.Add(Sfx.Pulling, carrotPulling);
         sfxMap.Add(Sfx.Pulled, carrotPulled);
         sfxMap.Add(Sfx.Landing, carrotLanding);
@@ -47,6 +52,11 @@ public class SoundManager : MonoBehaviour
         musicSource.clip = gameSound;
         musicSource.loop = true;
         musicSource.Play();
+    }
+
+    public void SpeedUpMusic()
+    {
+        musicSource.pitch = 1.5f;
     }
 
     public AudioSource PlaySfxLoop(Sfx sound)
@@ -73,10 +83,10 @@ public class SoundManager : MonoBehaviour
         Destroy(source);
     }
 
-    public void PlaySfx(Sfx sound)
+    public void PlaySfx(Sfx sound, float volumeScale = 3.5f)
     {
         var sfx = GetSfxClip(sound);
-        musicSource.PlayOneShot(sfx, 3.5f);
+        musicSource.PlayOneShot(sfx, volumeScale);
     }
 
     private AudioClip GetSfxClip(Sfx sound)

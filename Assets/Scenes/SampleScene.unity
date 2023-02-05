@@ -368,6 +368,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 565207020}
     - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 2139582238}
+    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
       propertyPath: countdownTimer
       value: 
       objectReference: {fileID: 403658323}
@@ -375,10 +379,6 @@ PrefabInstance:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1879947379}
-    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
-      propertyPath: matchDurationSeconds
-      value: 180
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -469,10 +469,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8839238247931117062, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 377.9162
-      objectReference: {fileID: 0}
     - target: {fileID: 8965317338885454742, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -561,10 +557,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 9159479506482153839, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_text
-      value: 'Time left: XX.XX'
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -637,7 +629,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.171875
+  orthographic size: 8.317551
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1615,6 +1607,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7359380adb184e9b84de902373afba5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2139582238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4655915615986428297, guid: 4a76c63f1f7954d30b7bd8bfef6d22ae, type: 3}
+  m_PrefabInstance: {fileID: 4655915617118249446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254cf644049d64925a48415e28f74499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3046874999469257884

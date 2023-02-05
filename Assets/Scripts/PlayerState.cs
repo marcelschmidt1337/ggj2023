@@ -48,4 +48,5 @@ public class PlayerState : MonoBehaviour
     
     public bool CanWalk => CurrentAction != PlayerAction.Stunned && CurrentAction != PlayerAction.PickingUp && CurrentAction != PlayerAction.Throwing;
     public bool CanPickUp => CurrentAction != PlayerAction.Stunned && CurrentAction != PlayerAction.Carrying && CurrentAction != PlayerAction.Throwing;
+    public bool IsPlayer2 { get; set; }
 }

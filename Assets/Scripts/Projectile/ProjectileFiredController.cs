@@ -1,6 +1,21 @@
-using System.IO;
 using System;
+using System.Linq;
 using UnityEngine;
+using UnityEditor;
+
+
+[Serializable]
+public class LayerMaskReboundStrengthConfig
+{
+    public LayerMask LayerMask;
+    public float minReboundRange;
+    public float maxReboundRange;
+
+    public float GetRandomReboundRange()
+    {
+        return UnityEngine.Random.Range(minReboundRange, maxReboundRange);
+    }
+}
 
 [Serializable]
 public class ProjectileFiredStateController : AProjectileStateController
@@ -12,6 +27,8 @@ public class ProjectileFiredStateController : AProjectileStateController
 
     protected override ProjectileState AnimationState { get; set; } = ProjectileState.Fired;
     [SerializeField] private AnimationCurve ScaleComponent;
+    [SerializeField] private LayerMaskReboundStrengthConfig[] ReboundStrengthConfigs;
+
     [SerializeField] private float extraScale;
     [SerializeField] private float collisionActivationThreshold;
     private double travelFinishTime;
@@ -63,16 +80,39 @@ public class ProjectileFiredStateController : AProjectileStateController
             if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 other.GetComponent<PlayerController>().StunPlayer();
-                Fire(UnityEngine.Random.Range(2, 4), UnityEngine.Random.insideUnitCircle.normalized);
-                OnBounce?.Invoke(LayerMask.LayerToName(other.gameObject.layer));
+                Bounce(other.gameObject.layer, UnityEngine.Random.insideUnitCircle.normalized);
             }
-            else if (other.gameObject.layer == LayerMask.NameToLayer("Water") || other.gameObject.layer == LayerMask.NameToLayer("Root"))
+            else if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
             {
-                Fire(UnityEngine.Random.Range(3, 4), UnityEngine.Random.insideUnitCircle.normalized);
-                OnBounce?.Invoke(LayerMask.LayerToName(other.gameObject.layer));
+                Vector2 randomVector;
+                if (UnityEngine.Random.Range(0.0f, 1.0f) < 0.3)
+                {
+                    randomVector = UnityEngine.Random.insideUnitCircle;
+                }
+                else
+                {
+                    float coneAngle = 90.0f;
+                    float randomAngle = UnityEngine.Random.Range(0, coneAngle);
+                    randomAngle += 270 - coneAngle / 2.0f;
+                    randomAngle *= Mathf.Deg2Rad;
+                    randomVector = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
+                }
 
+                Bounce(other.gameObject.layer, randomVector.normalized);
+            }
+            else if (other.gameObject.layer == LayerMask.NameToLayer("Root"))
+            {
+                Bounce(other.gameObject.layer, UnityEngine.Random.insideUnitCircle.normalized);
             }
         }
+    }
+
+    private void Bounce(int layer, Vector2 direction)
+    {
+        float randomReboundRange = ReboundStrengthConfigs.First(x => (1 < layer) & x.LayerMask != 0).GetRandomReboundRange();
+
+        Fire(randomReboundRange, direction);
+        OnBounce?.Invoke(LayerMask.LayerToName(layer));
     }
     private float ComputeLapsedTimePercent()
     {

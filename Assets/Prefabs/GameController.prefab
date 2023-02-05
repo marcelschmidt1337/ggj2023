@@ -44,5 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec1462a0b3ae4a77a9386dcf2fd6268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapManager: {fileID: 0}
   gameOverScreen: {fileID: 0}
+  countdownTimer: {fileID: 0}
+  soundManager: {fileID: 0}
   matchDurationSeconds: 180
+  musicSpeedUpThreshold: 60

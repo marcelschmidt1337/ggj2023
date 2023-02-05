@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    [SerializeField] private bool isPlayerTwo;
     [SerializeField] private PlayerState playerState;
     [SerializeField] private Animator animator;
     
@@ -19,7 +21,19 @@ public class PlayerAnimationController : MonoBehaviour
         "ThrowingAction",
         "StunnedAction",
     };
-    
+
+    private void Start()
+    {
+        if (isPlayerTwo)
+        {
+            gameObject.SetActive(playerState.IsPlayer2);
+        }
+        else
+        {
+            gameObject.SetActive(!playerState.IsPlayer2);
+        }
+    }
+
     private void OnEnable()
     {
         playerState.OnActionChanged += OnPlayerActionChanged;
