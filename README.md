@@ -7,9 +7,9 @@ https://user-images.githubusercontent.com/9122142/216828419-125a6cb7-12e4-4a99-9
 
 ---
 
-# [PLAY ONLINE](https://marcelschmidt1337.github.io/ggj2023/)
+## [PLAY ONLINE](https://marcelschmidt1337.github.io/ggj2023/)
 
-
+## [DOWNLOAD (MACOS)](https://marcelschmidt1337.github.io/ggj2023/Assets/root_force_mac.zip)
 
 ## Gameplay
 1. Bot players start with an equally populated field of carrots.
@@ -42,7 +42,3 @@ Check out the official trailer for Root Force to get a feel for the fast-paced, 
 
 ## Disclaimer
 The code is a beauty to admire through the lense of absrtract art.
-
-Play online: [HERE](https://marcelschmidt1337.github.io/ggj2023/)
-
-Download (MacOS): [HERE](https://marcelschmidt1337.github.io/ggj2023/Assets/root_force_mac.zip)
