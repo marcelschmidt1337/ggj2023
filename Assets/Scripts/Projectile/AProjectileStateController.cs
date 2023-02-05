@@ -10,7 +10,7 @@ public abstract class AProjectileStateController
     protected CircleCollider2D collider;
     protected abstract ProjectileState AnimationState { get; set; }
 
-    public void Init(Transform t, Animator a, CircleCollider2D c)
+    public virtual void Init(Transform t, Animator a, CircleCollider2D c)
     {
         this.transform = t;
         this.animationController = a;

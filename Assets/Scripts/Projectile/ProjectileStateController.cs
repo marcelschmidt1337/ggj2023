@@ -29,7 +29,6 @@ public class ProjectileStateController : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("start");
         ActivateGround();
         soundManager = GameObject.FindWithTag("Sound")?.GetComponent<SoundManager>();
     }
@@ -59,11 +58,12 @@ public class ProjectileStateController : MonoBehaviour
         switch (projectileState)
         {
             case ProjectileState.Grounded:
-                Debug.Log("Grounded!");
+                Debug.Log("grounded");
                 selectedStateController = ProjectileGroundedStateController;
                 break;
             case ProjectileState.Fired:
-                Debug.Log("Fire!");
+                Debug.Log("fired");
+
                 selectedStateController = ProjectileFiredStateController;
                 break;
         }

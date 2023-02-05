@@ -55,6 +55,11 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody.velocity += moveDir * (Time.fixedDeltaTime * speedMultiplier);
             playerState.WalkDirection = moveDir;
+
+            if (Mathf.Abs(moveDir.x) > 0)
+            {
+                playerState.PlayerOrientation = (int)Mathf.Sign(moveDir.x);
+            }
         }
         else
         {
@@ -104,6 +109,7 @@ public class PlayerController : MonoBehaviour
                 //Pair carrot to player
                 var target = pickupTargetSensor.CurrentPickupTarget.transform;
                 target.SetParent(transform);
+                target.gameObject.SetActive(false);
                 target.localPosition = new Vector2(0, 0.5f);
                 Debug.Log($"Picking up: {target}");
                 playerState.ObjectCarrying = target;
@@ -141,9 +147,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
 
                 playerState.ObjectCarrying.SetParent(null);
+                playerState.ObjectCarrying.gameObject.SetActive(true);
 
                 var projectile = playerState.ObjectCarrying.GetComponent<ProjectileStateController>();
-                var direction = (int)Mathf.Sign(transform.forward.x);
+                var direction = playerState.PlayerOrientation;
                 projectile.FireProjectile(currentThrowCharge * maxThrowDistance, direction);
 
                 playerState.ObjectCarrying = null;

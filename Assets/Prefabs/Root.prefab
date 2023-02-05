@@ -217,7 +217,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.07
 --- !u!114 &4200006321096389029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +234,84 @@ MonoBehaviour:
   collider2D: {fileID: 6449220817063908756}
   projectileAnimator: {fileID: 3182111187793540182}
   ProjectileFiredStateController:
-    TimeOfTravel: 0.51
+    TimeOfTravel: 0.7
+    ScaleComponent:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.73294264
+        outSlope: 0.73294264
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.34549522
+      - serializedVersion: 3
+        time: 0.19844319
+        value: 1.1576964
+        inSlope: 1.9143308
+        outSlope: 1.9143308
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.7500038
+        value: 0.051689487
+        inSlope: 2.0219538
+        outSlope: 2.0219538
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.21501341
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.6406749
+        outSlope: -0.6406749
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.3477996
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    extraScale: 5
+  ProjectileGroundedStateController:
+    ProximitySpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 5.660377
+        outSlope: 5.660377
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.090431206
+      - serializedVersion: 3
+        time: 0.29728508
+        value: 0.8439979
+        inSlope: 0.49642512
+        outSlope: 0.49642512
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.20747894
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!95 &3182111187793540182
 Animator:
   serializedVersion: 5
