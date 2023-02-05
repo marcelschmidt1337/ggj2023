@@ -21,7 +21,9 @@ https://user-images.githubusercontent.com/9122142/216828419-125a6cb7-12e4-4a99-9
 ## Features
 - Fast-paced, local 2 player action
 - Simple, intuitive controls
-- Pseudoprocedural generated terrain adds variety to each game
+- Pseudoprocedural generated terrain
+- Amazing Pixel-Art style
+- Unique Soul-crushing sounds
 
 ## Requirements
 - Keyboard
