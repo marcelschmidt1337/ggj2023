@@ -146,7 +146,7 @@ MonoBehaviour:
   playerInput: {fileID: 1524156939793907972}
   pickupTargetSensor: {fileID: 5890044463602198257}
   rigidbody: {fileID: 1612666963757044639}
-  speedMultiplier: 5
+  speedMultiplier: 70
   maxThrowDistance: 10
   durationToReachMaxDistance: 2
 --- !u!114 &1612666963757044706
