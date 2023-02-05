@@ -277,7 +277,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    extraScale: 5
+    extraScale: 10
   ProjectileGroundedStateController:
     ProximitySpeedCurve:
       serializedVersion: 2
