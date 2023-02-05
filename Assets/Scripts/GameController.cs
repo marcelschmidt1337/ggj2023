@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private MapManager mapManager;
     [SerializeField] private GameOverScreen gameOverScreen;
+    [SerializeField] private CountdownTimer countdownTimer;
     [SerializeField] private int matchDurationSeconds = 180;
 
     private float matchTimeElapsed;
@@ -25,7 +26,7 @@ public class GameController : MonoBehaviour
     {
         while (true)
         {
-            // Debug.Log($"Time elapsed: {matchTimeElapsed} / {matchDurationSeconds} s");
+            countdownTimer.UpdateTimeLeft(matchDurationSeconds - matchTimeElapsed);
         
             matchTimeElapsed += Time.deltaTime;
 
