@@ -7,10 +7,10 @@ https://user-images.githubusercontent.com/9122142/216828419-125a6cb7-12e4-4a99-9
 
 ---
 
-## [PLAY ONLINE](https://marcelschmidt1337.github.io/ggj2023/)
-
-## [DOWNLOAD (MACOS)](https://marcelschmidt1337.github.io/ggj2023/downloads/RootForce_Mac.zip)
-## [DOWNLOAD (WINDOWS)](https://marcelschmidt1337.github.io/ggj2023/downloads/RootForce_Windows.zip)
+## Downloads
+* [PLAY ONLINE](https://marcelschmidt1337.github.io/ggj2023/)
+* [DOWNLOAD (MACOS)](https://marcelschmidt1337.github.io/ggj2023/downloads/RootForce_Mac.zip)
+* [DOWNLOAD (WINDOWS)](https://marcelschmidt1337.github.io/ggj2023/downloads/RootForce_Windows.zip)
 
 ## Gameplay
 1. Both players start with an equally populated field of carrots.
