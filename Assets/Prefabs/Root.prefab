@@ -278,7 +278,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     extraScale: 10
-    collisionActivationThreshold: 0.9
+    collisionActivationThreshold: 0.8
   ProjectileGroundedStateController:
     ProximitySpeedCurve:
       serializedVersion: 2
