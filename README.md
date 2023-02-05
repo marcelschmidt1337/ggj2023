@@ -43,3 +43,6 @@ Check out the official trailer for Root Force to get a feel for the fast-paced, 
 ## Disclaimer
 The code is a beauty to admire through the lense of absrtract art.
 
+Play online: [HERE](https://marcelschmidt1337.github.io/ggj2023/)
+
+Download (MacOS): [HERE](https://marcelschmidt1337.github.io/ggj2023/Assets/root_force_mac.zip)
