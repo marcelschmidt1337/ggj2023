@@ -23,14 +23,18 @@ public class GameController : MonoBehaviour
 
             if (matchTimeElapsed > matchDurationSeconds)
             {
-                //TODO
-                var hasWon = false;
-                gameOverScreen.Show(hasWon);
+                GameOver();
             
                 yield break;
             }
 
             yield return null;
         }
+    }
+
+    public void GameOver()
+    {
+        var player1Won = false;
+        gameOverScreen.Show(player1Won);
     }
 }

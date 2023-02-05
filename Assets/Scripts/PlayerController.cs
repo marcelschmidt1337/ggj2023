@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public void StunPlayer()
     {
         if (playerState.CurrentAction == PlayerAction.Stunned) return;
-
+        soundManager.PlaySfx(SoundManager.Sfx.Hit);
         StartCoroutine(PlayerStunned());
     }
 
