@@ -72,7 +72,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySfx(Sfx sound)
     {
         var sfx = GetSfxClip(sound);
-        musicSource.PlayOneShot(sfx);
+        musicSource.PlayOneShot(sfx, 3.5f);
     }
 
     private AudioClip GetSfxClip(Sfx sound)
