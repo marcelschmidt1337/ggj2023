@@ -26,7 +26,8 @@ public class GameController : MonoBehaviour
     {
         while (true)
         {
-            countdownTimer.UpdateTimeLeft(matchDurationSeconds - matchTimeElapsed);
+            var timeLeft = matchDurationSeconds - matchTimeElapsed;
+            countdownTimer.UpdateTimeLeft(timeLeft);
         
             matchTimeElapsed += Time.deltaTime;
 
