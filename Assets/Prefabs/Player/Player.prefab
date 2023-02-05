@@ -99,7 +99,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.65
 --- !u!114 &1524156939793907972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   speedMultiplier: 70
   maxThrowDistance: 10
   durationToReachMaxDistance: 2
+  stunDuration: 1
 --- !u!114 &1612666963757044706
 MonoBehaviour:
   m_ObjectHideFlags: 0
