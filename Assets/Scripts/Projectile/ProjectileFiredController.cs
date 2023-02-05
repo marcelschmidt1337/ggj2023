@@ -135,7 +135,6 @@ public class ProjectileFiredStateController : AProjectileStateController
         velocity = Vector2.zero;
         travelFinishTime = Time.timeAsDouble;
         this.transform.localScale = initialScale;
-        Debug.Log("landed");
     }
 
 }

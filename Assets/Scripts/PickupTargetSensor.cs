@@ -58,6 +58,5 @@ public class PickupTargetSensor : MonoBehaviour
         {
             CurrentPickupTarget = null;
         }
-        Debug.Log($"Current pickup target: {CurrentPickupTarget}");
     }
 }

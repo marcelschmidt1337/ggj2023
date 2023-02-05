@@ -76,7 +76,6 @@ public class PlayerAnimationController : MonoBehaviour
         foreach (var actionStr in Actions)
         {
             animator.SetBool(actionStr,currentActionStr.Equals(actionStr));
-            Debug.Log($"Updating Action to current: {currentActionStr}, selected: {actionStr}, are equal: {currentActionStr.Equals(actionStr)}");
         }
     }
 }

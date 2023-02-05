@@ -56,13 +56,12 @@ public class MapManager : MonoBehaviour
             var pos = cam.WorldToViewportPoint(pro.transform.position).x;
             if (Mathf.Sign(pos * 2 - 1) < 0)
             {
-                if (!carrotsP2Side.Contains(pro)) carrotsP2Side.Add(pro);
+                if (!carrotsP1Side.Contains(pro)) carrotsP1Side.Add(pro);
             }
             else
             {
-                if (!carrotsP1Side.Contains(pro)) carrotsP1Side.Add(pro);
+                if (!carrotsP2Side.Contains(pro)) carrotsP2Side.Add(pro);
             }
-
             CheckGameOver();
         }
     }
@@ -83,11 +82,11 @@ public class MapManager : MonoBehaviour
         }
         else if (carrotsP1Side.Count > carrotsP2Side.Count)
         {
-            return GameResult.Player1Wins;
+            return GameResult.Player2Wins;
         }
         else
         {
-            return GameResult.Player2Wins;
+            return GameResult.Player1Wins;
         }
     }
 }

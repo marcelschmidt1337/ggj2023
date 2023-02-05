@@ -129,7 +129,6 @@ public class PlayerController : MonoBehaviour
                 target.SetParent(transform);
                 target.gameObject.SetActive(false);
                 target.localPosition = new Vector2(0, 0.2f);
-                Debug.Log($"Picking up: {target}");
                 playerState.ObjectCarrying = target;
                 soundManager.StopSfxLoop(pullingLoop);
                 pullingLoop = null;
@@ -147,7 +146,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerState.CurrentAction != PlayerAction.Carrying || playerState.ObjectCarrying == null) return;
 
-                Debug.Log($"Start throwing: {playerState.ObjectCarrying}");
 
                 playerState.CurrentAction = PlayerAction.Throwing;
 
@@ -164,7 +162,6 @@ public class PlayerController : MonoBehaviour
                     StopCoroutine(chargeThrowRoutine);
                 }
 
-                Debug.Log($"Performing throw: {playerState.ObjectCarrying}");
 
                 playerState.ObjectCarrying.SetParent(null);
                 playerState.ObjectCarrying.gameObject.SetActive(true);
@@ -194,7 +191,6 @@ public class PlayerController : MonoBehaviour
 
             totalChargeDuration += Time.deltaTime;
             currentThrowCharge = Mathf.PingPong(totalChargeDuration, durationToReachMaxDistance);
-            Debug.Log($"Current Throw Charge: {currentThrowCharge}");
         }
     }
 }
