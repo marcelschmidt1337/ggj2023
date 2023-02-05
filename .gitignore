@@ -65,3 +65,5 @@ crashlytics-build.properties
 
 UserSettings
 
+out
+*.DS_Store
