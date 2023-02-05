@@ -54,6 +54,11 @@ public class SoundManager : MonoBehaviour
         musicSource.Play();
     }
 
+    public void SpeedUpMusic()
+    {
+        musicSource.pitch = 1.5f;
+    }
+
     public AudioSource PlaySfxLoop(Sfx sound)
     {
         var sfx = GetSfxClip(sound);

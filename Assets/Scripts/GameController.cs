@@ -13,12 +13,16 @@ public class GameController : MonoBehaviour
     [SerializeField] private MapManager mapManager;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private CountdownTimer countdownTimer;
+    [SerializeField] private SoundManager soundManager;
     [SerializeField] private int matchDurationSeconds = 180;
+    [SerializeField] private int musicSpeedUpThreshold = 60;
 
     private float matchTimeElapsed;
+    private bool isSpeedUpTriggered;
 
     private void Awake()
     {
+        isSpeedUpTriggered = false;
         StartCoroutine(StartMatch());
     }
 
@@ -28,13 +32,19 @@ public class GameController : MonoBehaviour
         {
             var timeLeft = matchDurationSeconds - matchTimeElapsed;
             countdownTimer.UpdateTimeLeft(timeLeft);
-        
+
             matchTimeElapsed += Time.deltaTime;
+
+            if (!isSpeedUpTriggered && matchDurationSeconds - matchTimeElapsed <= musicSpeedUpThreshold)
+            {
+                isSpeedUpTriggered = true;
+                soundManager.SpeedUpMusic();
+            }
 
             if (matchTimeElapsed > matchDurationSeconds)
             {
                 GameOver();
-            
+
                 yield break;
             }
 
