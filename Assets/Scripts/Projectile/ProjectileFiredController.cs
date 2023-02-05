@@ -14,7 +14,7 @@ public class ProjectileFiredStateController : AProjectileStateController
 
 
     private double travelFinishTime;
-    private float velocity = 0;
+    private Vector2 velocity;
     private Vector3 initialScale;
 
     public override void OnDrawGizmos()
@@ -29,13 +29,14 @@ public class ProjectileFiredStateController : AProjectileStateController
     }
     public override void Update()
     {
-        if (velocity != 0)
+        if (velocity.magnitude != 0)
         {
             float progress = ComputeLapsedTimePercent();
 
             if (progress == 1)
             {
                 Stop();
+                OnLandedAction?.Invoke();
                 return;
             }
             MoveProjectile();
@@ -45,18 +46,33 @@ public class ProjectileFiredStateController : AProjectileStateController
     }
     public void Fire(float travelDistance, int direction)
     {
+        velocity = Vector2.right * direction * (travelDistance / TimeOfTravel);
+        travelFinishTime = Time.time + TimeOfTravel;
+    }
+    public void Fire(float travelDistance, Vector2 direction)
+    {
         velocity = direction * (travelDistance / TimeOfTravel);
         travelFinishTime = Time.time + TimeOfTravel;
-
-
     }
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if (ComputeLapsedTimePercent() >= collisionActivationThreshold && other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (ComputeLapsedTimePercent() >= collisionActivationThreshold)
         {
-            other.GetComponent<PlayerController>().StunPlayer();
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                other.GetComponent<PlayerController>().StunPlayer();
+                Fire(UnityEngine.Random.Range(2, 4), UnityEngine.Random.insideUnitCircle);
+            }
         }
-
+    }
+    public override void OnTriggerStay2D(Collider2D other)
+    {
+        if (ComputeLapsedTimePercent() >= collisionActivationThreshold
+        && (other.gameObject.layer == LayerMask.NameToLayer("Water")
+        || other.gameObject.layer == LayerMask.NameToLayer("Root")))
+        {
+            Fire(UnityEngine.Random.Range(3, 4), UnityEngine.Random.insideUnitCircle);
+        }
     }
     private float ComputeLapsedTimePercent()
     {
@@ -67,23 +83,30 @@ public class ProjectileFiredStateController : AProjectileStateController
     {
 
         var position = this.transform.position;
-        position.x = this.transform.position.x + velocity * Time.deltaTime;
-        position.x = Camera.main.WorldToViewportPoint(position).x % 1.0f;
+        position = this.transform.position + (Vector3)velocity * Time.deltaTime;
+        position = Camera.main.WorldToViewportPoint(position);
+        position.x %= 1.0f;
+        position.y %= 1.0f;
         if (Mathf.Sign(position.x) < 1)
         {
             position.x = 1.0f + position.x;
         }
-        position.x = Camera.main.ViewportToWorldPoint(position).x;
+
+        if (Mathf.Sign(position.y) < 1)
+        {
+            position.y = 1.0f + position.x;
+        }
+        position = Camera.main.ViewportToWorldPoint(position);
+        position.z = 0;
         this.transform.position = position;
 
     }
     private void Stop()
     {
-        velocity = 0;
+        velocity = Vector2.zero;
         travelFinishTime = Time.timeAsDouble;
         this.transform.localScale = initialScale;
         Debug.Log("landed");
-        OnLandedAction?.Invoke();
     }
 
 }
