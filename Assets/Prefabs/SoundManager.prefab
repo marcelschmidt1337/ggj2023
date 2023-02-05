@@ -144,7 +144,7 @@ MonoBehaviour:
   musicSource: {fileID: 4655915615986428310}
   gameSound: {fileID: 8300000, guid: 92faa61b17c9e4227941d175b73157ee, type: 3}
   carrotHit:
-  - {fileID: 8300000, guid: 676cc5bb59d564ba6975d1a2814efa09, type: 3}
+  - {fileID: 8300000, guid: 44ea19417e23de0449438111ccf15b4e, type: 3}
   carrotPulling:
   - {fileID: 8300000, guid: ccf29c07b4859487397cd80b2a56b489, type: 3}
   - {fileID: 8300000, guid: 98f1e163b3890498383b796aa7650051, type: 3}
