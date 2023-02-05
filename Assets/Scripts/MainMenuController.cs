@@ -16,4 +16,10 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Credits");
     }
+    
+    [UsedImplicitly]
+    public void OnHowToButtonClicked()
+    {
+        SceneManager.LoadScene("HowTo");
+    }
 }
