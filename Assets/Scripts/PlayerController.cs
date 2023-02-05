@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public void StunPlayer()
     {
+        if (playerState.CurrentAction == PlayerAction.Stunned) return;
+        
         StartCoroutine(PlayerStunned());
     }
     private IEnumerator PlayerStunned()
@@ -119,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
                     playerState.CurrentAction = PlayerAction.Carrying;
 
-                    //Pair carrot to player
+                    // TODO: Do not parent to player
                     var target = pickupTargetSensor.CurrentPickupTarget.transform;
                     target.SetParent(transform);
                     target.gameObject.SetActive(false);

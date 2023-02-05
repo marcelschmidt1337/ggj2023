@@ -56,6 +56,9 @@ public class ProjectileFiredStateController : AProjectileStateController
     }
     public override void OnTriggerEnter2D(Collider2D other)
     {
+    }
+    public override void OnTriggerStay2D(Collider2D other)
+    {
         if (ComputeLapsedTimePercent() >= collisionActivationThreshold)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -63,15 +66,10 @@ public class ProjectileFiredStateController : AProjectileStateController
                 other.GetComponent<PlayerController>().StunPlayer();
                 Fire(UnityEngine.Random.Range(2, 4), UnityEngine.Random.insideUnitCircle);
             }
-        }
-    }
-    public override void OnTriggerStay2D(Collider2D other)
-    {
-        if (ComputeLapsedTimePercent() >= collisionActivationThreshold
-        && (other.gameObject.layer == LayerMask.NameToLayer("Water")
-        || other.gameObject.layer == LayerMask.NameToLayer("Root")))
-        {
-            Fire(UnityEngine.Random.Range(3, 4), UnityEngine.Random.insideUnitCircle);
+            else if (other.gameObject.layer == LayerMask.NameToLayer("Water") || other.gameObject.layer == LayerMask.NameToLayer("Root"))
+            {
+                Fire(UnityEngine.Random.Range(3, 4), UnityEngine.Random.insideUnitCircle);
+            }
         }
     }
     private float ComputeLapsedTimePercent()
@@ -94,7 +92,7 @@ public class ProjectileFiredStateController : AProjectileStateController
 
         if (Mathf.Sign(position.y) < 1)
         {
-            position.y = 1.0f + position.x;
+            position.y = 1.0f + position.y;
         }
         position = Camera.main.ViewportToWorldPoint(position);
         position.z = 0;
