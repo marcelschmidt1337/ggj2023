@@ -78,10 +78,10 @@ public class SoundManager : MonoBehaviour
         Destroy(source);
     }
 
-    public void PlaySfx(Sfx sound)
+    public void PlaySfx(Sfx sound, float volumeScale = 3.5f)
     {
         var sfx = GetSfxClip(sound);
-        musicSource.PlayOneShot(sfx, 3.5f);
+        musicSource.PlayOneShot(sfx, volumeScale);
     }
 
     private AudioClip GetSfxClip(Sfx sound)
