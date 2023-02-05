@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileFiredStateController : AProjectileStateController
 {
     public event Action OnLandedAction;
+    public event Action<string> OnBounce;
 
     [Range(0.1f, 5)] public float TimeOfTravel;
     protected override ProjectileState AnimationState { get; set; } = ProjectileState.Fired;
@@ -65,10 +66,12 @@ public class ProjectileFiredStateController : AProjectileStateController
             {
                 other.GetComponent<PlayerController>().StunPlayer();
                 Fire(UnityEngine.Random.Range(2, 4), UnityEngine.Random.insideUnitCircle);
+                OnBounce?.Invoke(LayerMask.LayerToName(other.gameObject.layer));
             }
             else if (other.gameObject.layer == LayerMask.NameToLayer("Water") || other.gameObject.layer == LayerMask.NameToLayer("Root"))
             {
                 Fire(UnityEngine.Random.Range(3, 4), UnityEngine.Random.insideUnitCircle);
+                OnBounce?.Invoke(LayerMask.LayerToName(other.gameObject.layer));
             }
         }
     }

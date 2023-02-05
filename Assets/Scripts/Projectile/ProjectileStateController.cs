@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
+
 public enum ProjectileState
 {
     Grounded,
@@ -39,11 +40,26 @@ public class ProjectileStateController : MonoBehaviour
         ProjectileFiredStateController.Fire(strength, direction);
         ProjectileFiredStateController.OnLandedAction -= ActivateGround;
         ProjectileFiredStateController.OnLandedAction += ActivateGround;
+        ProjectileFiredStateController.OnBounce -= PlayBounceSfx;
+        ProjectileFiredStateController.OnBounce += PlayBounceSfx;
     }
 
     private void ActivateGround()
     {
         ActivateState(ProjectileState.Grounded);
+    }
+
+    private void PlayBounceSfx(string hitLayerName)
+    {
+        switch (hitLayerName)
+        {
+            case "Player":
+            case "Water":
+            case "Root":
+            default:
+                soundManager.PlaySfx(SoundManager.Sfx.CarrotBounce);
+                break;
+        }
     }
 
     private void ActivateState(ProjectileState newState)

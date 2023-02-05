@@ -10,7 +10,8 @@ public class SoundManager : MonoBehaviour
 {
     public enum Sfx
     {
-        Hit,
+        PlayerHit,
+        CarrotBounce,
         Pulling,
         Pulled,
         Landing,
@@ -33,7 +34,7 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         sfxMap.Clear();
-        sfxMap.Add(Sfx.Hit, carrotHit);
+        sfxMap.Add(Sfx.PlayerHit, carrotHit);
         sfxMap.Add(Sfx.Pulling, carrotPulling);
         sfxMap.Add(Sfx.Pulled, carrotPulled);
         sfxMap.Add(Sfx.Landing, carrotLanding);
@@ -80,6 +81,11 @@ public class SoundManager : MonoBehaviour
 
     private AudioClip GetSfxClip(Sfx sound)
     {
+        if (sfxMap[sound].Count == 0)
+        {
+            return null;
+        }
+
         var sounds = sfxMap[sound];
         return sounds[Random.Range(0, sounds.Count)];
     }
