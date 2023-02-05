@@ -11,7 +11,13 @@ public class MapManager : MonoBehaviour
     {
         var indexP1 = Random.Range(0, carrotPattern.Count);
         var carrotsP1 = carrotPattern[indexP1];
-        Instantiate(carrotsP1, carrotSpawnP1.position, carrotSpawnP1.rotation, transform);
+        var p = Instantiate(carrotsP1, carrotSpawnP1.position, carrotSpawnP1.rotation, transform);
+        
+        //Rotate individual carrots back so they face the right direction
+        foreach (var c in p.GetComponentsInChildren<Transform>())
+        {
+            c.localEulerAngles = -carrotSpawnP1.rotation.eulerAngles;
+        }
 
         var indexP2 = Random.Range(0, carrotPattern.Count);
         var carrotsP2 = carrotPattern[indexP2];
