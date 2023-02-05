@@ -1,8 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
+public enum GameResult
+{
+    Player1Wins,
+    Player2Wins,
+    Draw
+}
+
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private MapManager mapManager;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private int matchDurationSeconds = 180;
 
@@ -34,7 +42,8 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        var player1Won = false;
-        gameOverScreen.Show(player1Won);
+        //TODO: Stop game and players!
+
+        gameOverScreen.Show(mapManager.GetGameResult());
     }
 }
