@@ -18,11 +18,13 @@ public class GameController : MonoBehaviour
     [SerializeField] private int musicSpeedUpThreshold = 60;
 
     private float matchTimeElapsed;
-    private bool isSpeedUpTriggered;
+    private bool isSpeedUpTriggered1;
+    private bool isSpeedUpTriggered2;
 
     private void Awake()
     {
-        isSpeedUpTriggered = false;
+        isSpeedUpTriggered1 = false;
+        isSpeedUpTriggered2 = false;
         StartCoroutine(StartMatch());
     }
 
@@ -35,10 +37,16 @@ public class GameController : MonoBehaviour
 
             matchTimeElapsed += Time.deltaTime;
 
-            if (!isSpeedUpTriggered && matchDurationSeconds - matchTimeElapsed <= musicSpeedUpThreshold)
+            if (!isSpeedUpTriggered1 && matchDurationSeconds - matchTimeElapsed <= musicSpeedUpThreshold)
             {
-                isSpeedUpTriggered = true;
-                soundManager.SpeedUpMusic();
+                isSpeedUpTriggered1 = true;
+                soundManager.SpeedUpMusic(1.3f);
+            }
+
+            if (!isSpeedUpTriggered2 && matchDurationSeconds - matchTimeElapsed <= 15)
+            {
+                isSpeedUpTriggered2 = true;
+                soundManager.SpeedUpMusic(1.5f);
             }
 
             if (matchTimeElapsed > matchDurationSeconds)

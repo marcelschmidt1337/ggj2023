@@ -54,9 +54,9 @@ public class SoundManager : MonoBehaviour
         musicSource.Play();
     }
 
-    public void SpeedUpMusic()
+    public void SpeedUpMusic(float pitch)
     {
-        musicSource.pitch = 1.5f;
+        musicSource.pitch = Mathf.Lerp(musicSource.pitch, pitch, 0.5f);
     }
 
     public AudioSource PlaySfxLoop(Sfx sound)
