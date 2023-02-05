@@ -1,5 +1,7 @@
 # Root Force
 
+![Root Force Icon](rootforce_icon.png)
+
 ## Overview
 Root Force is a 2-player game where players take turns unearthing, charging and throwing carrots at each other. The goal is to hit the opponent and deplete all the carrots from your own field.
 
