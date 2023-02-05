@@ -282,17 +282,17 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 16
       minReboundRange: 2
-      maxReboundRange: 4
+      maxReboundRange: 3
     - LayerMask:
         serializedVersion: 2
         m_Bits: 64
-      minReboundRange: 2
+      minReboundRange: 1
       maxReboundRange: 3
     - LayerMask:
         serializedVersion: 2
         m_Bits: 128
       minReboundRange: 1
-      maxReboundRange: 4
+      maxReboundRange: 2
     extraScale: 10
     collisionActivationThreshold: 0.7
   ProjectileGroundedStateController:
