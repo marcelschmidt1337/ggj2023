@@ -156,3 +156,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 021b6fd177b1b4eb388009fbc768f81b, type: 3}
   carrotThrow:
   - {fileID: 8300000, guid: 758fb1c81e2d54539a8714a0750e2a32, type: 3}
+  carrotCharging:
+  - {fileID: 8300000, guid: acd1fc1a9b1956e4e92c07c60a27444a, type: 3}

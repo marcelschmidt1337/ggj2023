@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
         Pulling,
         Pulled,
         Landing,
+        Charging,
         Throw
     }
 
@@ -25,6 +26,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private List<AudioClip> carrotPulled;
     [SerializeField] private List<AudioClip> carrotLanding;
     [SerializeField] private List<AudioClip> carrotThrow;
+    [SerializeField] private List<AudioClip> carrotCharging;
 
     private Dictionary<Sfx, List<AudioClip>> sfxMap = new();
 
@@ -36,6 +38,7 @@ public class SoundManager : MonoBehaviour
         sfxMap.Add(Sfx.Pulled, carrotPulled);
         sfxMap.Add(Sfx.Landing, carrotLanding);
         sfxMap.Add(Sfx.Throw, carrotThrow);
+        sfxMap.Add(Sfx.Charging, carrotCharging);
     }
 
     private void Start()
