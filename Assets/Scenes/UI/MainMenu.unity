@@ -1360,3 +1360,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d427fb50b7a440dfb10ff9c16bbd7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startGameButton: {fileID: 484924041}
