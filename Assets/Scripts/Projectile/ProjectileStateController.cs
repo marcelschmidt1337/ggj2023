@@ -13,7 +13,7 @@ public enum ProjectileState
 
 public class ProjectileStateController : MonoBehaviour
 {
-    [HideInInspector] public event Action<ProjectileState> OnStateChanged;
+    [HideInInspector] public event Action<ProjectileStateController, ProjectileState> OnStateChanged;
 
     [SerializeField] private Rigidbody2D rigigBody;
     [SerializeField] private CircleCollider2D collider2D;
@@ -54,7 +54,7 @@ public class ProjectileStateController : MonoBehaviour
         }
 
         projectileState = newState;
-        OnStateChanged?.Invoke(projectileState);
+        OnStateChanged?.Invoke(this, projectileState);
         switch (projectileState)
         {
             case ProjectileState.Grounded:
