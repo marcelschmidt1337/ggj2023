@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e3426fc6bf1d6a745966d05af326a952
+guid: a68c67c313640324881f452bee1b3883
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -143,13 +143,181 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: water_obstacle_0
+      name: carrot_animated_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f4227f3e08b7d4abfcc4cd3f517eff
+      internalID: -1251292623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19de5c87cd2a55b4cbf3765c629a10e7
+      internalID: -507099173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca5eb2e4807b9d488c440e73717f6e4
+      internalID: 1878223430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94343370c91e5954497307499cb22703
+      internalID: -1075781692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41d49080351cf6442818cf6deef47b54
+      internalID: 593091387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8cd43a194534c4f9ab6a6bee72a093
+      internalID: -1551415368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 24
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0dd9508bbff00046b58d51c4ee06d52
+      internalID: 1752331383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26013160b649c254d8b01d8af28f816a
+      internalID: 653324351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_8
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,41 +325,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d66a27c5c6197ea42ac50f39c3647b7e
-      internalID: 1352762523
+      spriteID: 19cc3266fdae2b04a897b55c0d14fa6c
+      internalID: 297391744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water_obstacle_1
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aba5c8f4f2c263d469bca7b86a24bdc7
-      internalID: 826608325
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: water_obstacle_2
+      name: carrot_animated_9
       rect:
         serializedVersion: 2
         x: 16
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +346,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32226fcae55c0a84ea322fc0761daf8b
-      internalID: -1445963640
+      spriteID: 8bddefe6ce17277458c9fa7bed835313
+      internalID: -170911885
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water_obstacle_3
+      name: carrot_animated_10
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -220,8 +367,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db08ff31c169a1843995cfd11c167ae8
-      internalID: 407043051
+      spriteID: e0ac445ec0d377d488df41d5e085d269
+      internalID: 10497724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: carrot_animated_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02b11081d3099df4bb808e58c66217f1
+      internalID: 1241632182
       vertices: []
       indices: 
       edges: []
@@ -237,10 +405,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      water_obstacle_2: -1445963640
-      water_obstacle_0: 1352762523
-      water_obstacle_1: 826608325
-      water_obstacle_3: 407043051
+      carrot_animated_9: -170911885
+      carrot_animated_10: 10497724
+      carrot_animated_1: -507099173
+      carrot_animated_11: 1241632182
+      carrot_animated_8: 297391744
+      carrot_animated_5: -1551415368
+      carrot_animated_7: 653324351
+      carrot_animated_6: 1752331383
+      carrot_animated_0: -1251292623
+      carrot_animated_2: 1878223430
+      carrot_animated_3: -1075781692
+      carrot_animated_4: 593091387
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

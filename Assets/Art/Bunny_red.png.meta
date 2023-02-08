@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1440,9 +1440,9 @@ TextureImporter:
       Bunny_red_23: -191734595
       Bunny_red_44: 879468897
       Bunny_red_6: 1619817259
+      Bunny_red_48: -1370124367
       Bunny_red_32: -1242413409
       Bunny_red_31: 1716525161
-      Bunny_red_48: -1370124367
       Bunny_red_57: -2071469572
       Bunny_red_0: 827388193
       Bunny_red_26: -762393769
