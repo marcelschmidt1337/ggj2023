@@ -136,6 +136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 565207019}
     m_Modifications:
+    - target: {fileID: -1397044745440986069, guid: e267e59a2761d224580b46f6549f8f66, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7578794125661422146, guid: e267e59a2761d224580b46f6549f8f66, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -233,6 +237,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 565207019}
     m_Modifications:
+    - target: {fileID: -1397044745440986069, guid: e267e59a2761d224580b46f6549f8f66, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7578794125661422146, guid: e267e59a2761d224580b46f6549f8f66, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -379,6 +387,14 @@ PrefabInstance:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1879947379}
+    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
+      propertyPath: matchDurationSeconds
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
+      propertyPath: musicSpeedUpThreshold
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -451,6 +467,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6806996147060662641, guid: 2fd8a82d8f9b1a341a5b32713e4860f4, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -478,14 +498,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 34644664, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 34644664, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 34644664, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -502,32 +514,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1607363535, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1607363535, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1607363535, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1607363535, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898110192394476538, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898110192394476538, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8938480073701421682, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8965317338885454742, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_Pivot.x
@@ -617,10 +609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 8965317338885454824, guid: 88b3eb239849d4154917562bdc830718, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 8965317338885454825, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -693,7 +685,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.5625
+  orthographic size: 9.559409
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -874,6 +866,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 565207019}
     m_Modifications:
+    - target: {fileID: 253016927405290207, guid: a9fe30a12220d1749b812c1cd99093e0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4488941699507825506, guid: a9fe30a12220d1749b812c1cd99093e0, type: 3}
       propertyPath: m_Name
       value: MapWaterfall (1)
@@ -1307,6 +1303,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6806996147060662641, guid: 2fd8a82d8f9b1a341a5b32713e4860f4, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1374,7 +1374,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5e176691c14b48c409fccac8b1c4dc10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1492,6 +1492,10 @@ PrefabInstance:
     - target: {fileID: 4889099327127848942, guid: 2fd8a82d8f9b1a341a5b32713e4860f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806996147060662641, guid: 2fd8a82d8f9b1a341a5b32713e4860f4, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1692,6 +1696,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 565207019}
     m_Modifications:
+    - target: {fileID: -1397044745440986069, guid: e267e59a2761d224580b46f6549f8f66, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7578794125661422146, guid: e267e59a2761d224580b46f6549f8f66, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1814,6 +1822,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 565207019}
     m_Modifications:
+    - target: {fileID: 253016927405290207, guid: a9fe30a12220d1749b812c1cd99093e0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4488941699507825506, guid: a9fe30a12220d1749b812c1cd99093e0, type: 3}
       propertyPath: m_Name
       value: MapWaterfall
@@ -1944,6 +1956,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 565207019}
     m_Modifications:
+    - target: {fileID: -2762362669207611953, guid: 727c519db6855904086888bd7988a014, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3823795806088451971, guid: 727c519db6855904086888bd7988a014, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2017,9 +2033,17 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9245283
       objectReference: {fileID: 0}
+    - target: {fileID: -3762655307727843176, guid: 1ef3ba3aa864f4c43982805a76b22f40, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4989668329587746818, guid: 1ef3ba3aa864f4c43982805a76b22f40, type: 3}
       propertyPath: m_Name
       value: MapWave
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989668329587746818, guid: 1ef3ba3aa864f4c43982805a76b22f40, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9186559867169495158, guid: 1ef3ba3aa864f4c43982805a76b22f40, type: 3}
       propertyPath: m_RootOrder

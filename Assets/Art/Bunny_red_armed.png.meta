@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1413,7 +1413,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bunny_red_armed_21: 1185202428
+      Bunny_red_armed_4: -1550063167
       Bunny_red_armed_9: 397217314
       Bunny_red_armed_45: 1459674896
       Bunny_red_armed_52: 1582381772
@@ -1472,7 +1472,7 @@ TextureImporter:
       Bunny_red_armed_13: -129469785
       Bunny_red_armed_40: -1357389583
       Bunny_red_armed_15: 1480103279
-      Bunny_red_armed_4: -1550063167
+      Bunny_red_armed_21: 1185202428
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
