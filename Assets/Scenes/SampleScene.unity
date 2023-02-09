@@ -387,14 +387,6 @@ PrefabInstance:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1879947379}
-    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
-      propertyPath: matchDurationSeconds
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
-      propertyPath: musicSpeedUpThreshold
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -745,7 +737,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.1710663
+  orthographic size: 8.317551
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

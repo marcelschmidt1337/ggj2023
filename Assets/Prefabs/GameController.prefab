@@ -48,5 +48,5 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   countdownTimer: {fileID: 0}
   soundManager: {fileID: 0}
-  matchDurationSeconds: 180
-  musicSpeedUpThreshold: 60
+  matchDurationSeconds: 100
+  musicSpeedUpThreshold: 30
