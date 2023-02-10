@@ -835,7 +835,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<color=#8979a1>DEV</color>\nMarcel\nLudwig \nRicardo"
+  m_text: '<color=#8979a1>DEV</color>
+
+    Marcel S
+
+    Ludwig  L
+
+    Richi R'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 913844595ce81054d8b42761911ba18e, type: 2}
   m_sharedMaterial: {fileID: 7480152211162618466, guid: 913844595ce81054d8b42761911ba18e, type: 2}
