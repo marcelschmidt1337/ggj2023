@@ -380,6 +380,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2139582238}
     - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 1097533920}
+    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
       propertyPath: countdownTimer
       value: 
       objectReference: {fileID: 403658323}

@@ -10,6 +10,7 @@ public enum GameResult
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private MapManager mapManager;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private CountdownTimer countdownTimer;
@@ -62,8 +63,8 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        //TODO: Stop game and players!
-
+        playerManager.EnablePlayerInput(false);
+        
         gameOverScreen.Show(mapManager.GetGameResult());
     }
 }

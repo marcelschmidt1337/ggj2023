@@ -12,6 +12,8 @@ public enum PlayerAction
 
 public class PlayerState : MonoBehaviour
 {
+    public bool InputEnabled { get; set; } = true;
+
     public event Action<PlayerAction> OnActionChanged;
 
     private PlayerAction currentAction = PlayerAction.None;
@@ -46,7 +48,7 @@ public class PlayerState : MonoBehaviour
     public Vector2 WalkDirection { get; set; }
     public Transform ObjectCarrying { get; set; }
     
-    public bool CanWalk => CurrentAction != PlayerAction.Stunned && CurrentAction != PlayerAction.PickingUp && CurrentAction != PlayerAction.Throwing;
-    public bool CanPickUp => CurrentAction != PlayerAction.Stunned && CurrentAction != PlayerAction.Carrying && CurrentAction != PlayerAction.Throwing;
+    public bool CanWalk => InputEnabled && CurrentAction != PlayerAction.Stunned && CurrentAction != PlayerAction.PickingUp && CurrentAction != PlayerAction.Throwing;
+    public bool CanPickUp => InputEnabled && CurrentAction != PlayerAction.Stunned && CurrentAction != PlayerAction.Carrying && CurrentAction != PlayerAction.Throwing;
     public bool IsPlayer2 { get; set; }
 }
