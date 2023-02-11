@@ -14,8 +14,6 @@ public class GameOverScreen : MonoBehaviour
 
     public void Show(GameResult result)
     {
-        gameObject.SetActive(true);
-
         animator.SetBool(ShowHash, true);
         animator.SetBool(Player1Won, result == GameResult.Player1Wins);
         animator.SetBool(Player2Won, result == GameResult.Player2Wins);

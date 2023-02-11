@@ -63,8 +63,13 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        playerManager.EnablePlayerInput(false);
-        
+        PauseGame(true);
         gameOverScreen.Show(mapManager.GetGameResult());
+    }
+
+    public void PauseGame(bool pause)
+    {
+        playerManager.EnablePlayerInput(!pause);
+        Time.timeScale = pause ? 0f : 1f;
     }
 }
