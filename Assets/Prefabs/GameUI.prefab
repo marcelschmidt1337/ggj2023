@@ -3147,6 +3147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7359380adb184e9b84de902373afba5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  replayButton: {fileID: 34644667}
   animator: {fileID: 8965317339131076267}
 --- !u!95 &8965317339131076267
 Animator:
