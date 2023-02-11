@@ -2552,7 +2552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exit
+  m_text: Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 913844595ce81054d8b42761911ba18e, type: 2}
   m_sharedMaterial: {fileID: 7480152211162618466, guid: 913844595ce81054d8b42761911ba18e, type: 2}
@@ -3105,7 +3105,7 @@ GameObject:
   - component: {fileID: 234893748553256563}
   - component: {fileID: 7105274210084146270}
   m_Layer: 5
-  m_Name: ExitButton
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3215,9 +3215,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8965317339131076268}
-        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
-        m_MethodName: ExitToMainMenu
+      - m_Target: {fileID: 527827838190537947}
+        m_TargetAssemblyTypeName: PauseScreen, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

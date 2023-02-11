@@ -22,8 +22,12 @@ public class GameController : MonoBehaviour
     private bool isSpeedUpTriggered1;
     private bool isSpeedUpTriggered2;
 
+    public bool IsGameOver { get; private set; } = false;
+    
     private void Awake()
     {
+        Time.timeScale = 1f;
+
         isSpeedUpTriggered1 = false;
         isSpeedUpTriggered2 = false;
         StartCoroutine(StartMatch());
@@ -65,6 +69,7 @@ public class GameController : MonoBehaviour
     {
         PauseGame(true);
         gameOverScreen.Show(mapManager.GetGameResult());
+        IsGameOver = true;
     }
 
     public void PauseGame(bool pause)

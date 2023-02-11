@@ -1,7 +1,7 @@
-using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseScreen : MonoBehaviour
@@ -30,6 +30,11 @@ public class PauseScreen : MonoBehaviour
     
     private void PausePressed(InputAction.CallbackContext context)
     {
+        if (gameController.IsGameOver)
+        {
+            return;
+        }
+
         if (isShowing)
         {
             Hide();
@@ -59,5 +64,11 @@ public class PauseScreen : MonoBehaviour
         canvasGroup.alpha = 0f;
 
         isShowing = false;
+    }
+
+    [UsedImplicitly]
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
