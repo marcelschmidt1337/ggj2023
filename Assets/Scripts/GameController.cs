@@ -10,6 +10,7 @@ public enum GameResult
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private MapManager mapManager;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private CountdownTimer countdownTimer;
@@ -21,8 +22,12 @@ public class GameController : MonoBehaviour
     private bool isSpeedUpTriggered1;
     private bool isSpeedUpTriggered2;
 
+    public bool IsGameOver { get; private set; } = false;
+    
     private void Awake()
     {
+        Time.timeScale = 1f;
+
         isSpeedUpTriggered1 = false;
         isSpeedUpTriggered2 = false;
         StartCoroutine(StartMatch());
@@ -62,8 +67,14 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        //TODO: Stop game and players!
-
+        PauseGame(true);
         gameOverScreen.Show(mapManager.GetGameResult());
+        IsGameOver = true;
+    }
+
+    public void PauseGame(bool pause)
+    {
+        playerManager.EnablePlayerInput(!pause);
+        Time.timeScale = pause ? 0f : 1f;
     }
 }

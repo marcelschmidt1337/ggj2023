@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour
 
     private void EventHandler(InputAction.CallbackContext context)
     {
+        if (!playerState.InputEnabled)
+        {
+            return;
+        }
+        
         switch (context.action.name)
         {
             case "move":

@@ -9,6 +9,8 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         startGameButton.Select();
     }
 
@@ -18,16 +20,26 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
-    
+
     [UsedImplicitly]
     public void OnCreditsButtonClicked()
     {
         SceneManager.LoadScene("Credits");
     }
-    
+
     [UsedImplicitly]
     public void OnHowToButtonClicked()
     {
         SceneManager.LoadScene("HowTo");
+    }
+
+    [UsedImplicitly]
+    public void OnExitButtonClicked()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

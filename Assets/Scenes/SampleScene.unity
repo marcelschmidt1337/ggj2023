@@ -380,6 +380,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2139582238}
     - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 1097533920}
+    - target: {fileID: 252530665154975949, guid: c42b1b6241617432abedabfdf26cffb3, type: 3}
       propertyPath: countdownTimer
       value: 
       objectReference: {fileID: 403658323}
@@ -525,6 +529,22 @@ PrefabInstance:
       propertyPath: m_fontColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 527827838190537947, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 407178550}
+    - target: {fileID: 527827838190537947, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: pauseAction.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 527827838190537947, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: pauseAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 527827838190537947, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: pauseAction.m_SingletonActionBindings.Array.data[0].m_Interactions
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1284725446322127966, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_fontColor.b
       value: 1
@@ -536,6 +556,38 @@ PrefabInstance:
     - target: {fileID: 1284725446322127966, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_fontColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813005117116397005, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813005117116397005, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813005117116397005, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813005117116397005, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871066605806629358, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871066605806629358, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871066605806629358, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871066605806629358, guid: 88b3eb239849d4154917562bdc830718, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4898110192394476538, guid: 88b3eb239849d4154917562bdc830718, type: 3}
       propertyPath: m_Alpha
